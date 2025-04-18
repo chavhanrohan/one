@@ -1,0 +1,45 @@
+Project Warranty Information
+
+Hello {{ user.username }},
+
+This email contains important information about your project's warranty coverage. Please review the details below:
+
+Project Details:
+Project Title: {{ project.title }}
+Warranty Start Date: {{ warranty.start_date.strftime('%B %d, %Y') }}
+Warranty End Date: {{ warranty.end_date.strftime('%B %d, %Y') }}
+Warranty Type: {{ warranty.type }}
+
+What's Covered:
+{% for item in warranty.coverage %}
+- {{ item }}
+{% endfor %}
+
+What's Not Covered:
+{% for item in warranty.exclusions %}
+- {{ item }}
+{% endfor %}
+
+Maintenance Requirements:
+To maintain your warranty coverage, please ensure:
+{% for requirement in warranty.maintenance_requirements %}
+- {{ requirement }}
+{% endfor %}
+
+Warranty Claims:
+If you need to file a warranty claim, please contact us at:
+Phone: {{ warranty.claim_phone }}
+Email: {{ warranty.claim_email }}
+Hours: {{ warranty.claim_hours }}
+
+To view your complete warranty documentation and file claims, visit:
+{{ url_for('projects.warranty_details', project_id=project.id, _external=True) }}
+
+Please keep this information for your records. If you have any questions about your warranty coverage, don't hesitate to contact our warranty department.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

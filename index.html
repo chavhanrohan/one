@@ -1,0 +1,2450 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hexagon-gallery.css') }}">
+{% endblock %}
+
+{% block title %}Home - Construction Company{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-slider">
+        <div class="hero-slide active" data-bg="{{ url_for('static', filename='images/hero_slide_1.jpg') }}"></div>
+        <div class="hero-slide" data-bg="{{ url_for('static', filename='images/hero_slide_2.jpg') }}"></div>
+        <div class="hero-slide" data-bg="{{ url_for('static', filename='images/hero_slide_3.jpg') }}"></div>
+    </div>
+    
+    <!-- Animated Background Objects -->
+    <div class="hero-particles">
+        <div class="floating-object floating-circle" style="top: 15%; left: 10%"></div>
+        <div class="floating-object floating-square" style="top: 60%; left: 5%"></div>
+        <div class="floating-object floating-circle" style="top: 20%; right: 15%"></div>
+        <div class="floating-object floating-square" style="bottom: 25%; right: 10%"></div>
+    </div>
+    
+    <div class="hero-content">
+        <h1 class="display-4 mb-4 animate-fade-in">Building Tomorrow's Infrastructure Today</h1>
+        <div class="spacer my-4"></div>
+        <p class="lead mb-4 animate-fade-in">NEO Infrastructure Consultants, Nagpur offers consultancy services in infrastructure sectors under one roof. NEO provides its services around its core discipline of civil and structural engineering, especially pre-engineered steel buildings (PEB) and structural steel buildings. With multidisciplinary structure, NEO has already completed about 900 projects in about one and half decade.</p>
+        <div class="animate-fade-in">
+            <a href="{{ url_for('contact.contact') }}" class="btn btn-primary btn-lg me-3">Start Your Project</a>
+            <a href="{{ url_for('projects.project_list') }}" class="btn btn-outline-light btn-lg me-3">View Our Work</a>
+            <a href="{{ url_for('static', filename='downloads/Neo Profile 290125 (8).pdf') }}" class="btn btn-secondary btn-lg" download>
+                <i class="fas fa-download me-2"></i>Download Brochure
+            </a>
+        </div>
+    </div>
+    <div class="hero-nav">
+        <div class="hero-nav-dot active" data-slide="0"></div>
+        <div class="hero-nav-dot" data-slide="1"></div>
+        <div class="hero-nav-dot" data-slide="2"></div>
+    </div>
+</section>
+
+<!-- Featured Image Section -->
+<section class="featured-image-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="featured-image-wrapper">
+                    <img src="{{ url_for('static', filename='images/expertise/image9.jpg') }}" alt="Our Vision" class="featured-image">
+                    <div class="image-overlay"></div>
+                    </div>
+                </div>
+            <div class="col-lg-6">
+                <div class="featured-content">
+                    <h2 class="display-4 fw-bold mb-4 animate-text">Building Dreams,<br>Shaping Futures</h2>
+                    <p class="lead mb-4 animate-text">Where innovation meets infrastructure, creating sustainable solutions for tomorrow's world.</p>
+                    <div class="featured-stats">
+                        <div class="stat-item animate-stat">
+                            <div class="stat-chart">
+                                <svg class="circular-chart" viewBox="0 0 36 36">
+                                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <path class="circle-progress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                </svg>
+                                <div class="stat-number" data-target="900">0</div>
+            </div>
+                            <div class="stat-label">Projects Completed</div>
+                    </div>
+                        <div class="stat-item animate-stat">
+                            <div class="stat-chart">
+                                <svg class="circular-chart" viewBox="0 0 36 36">
+                                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <path class="circle-progress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                </svg>
+                                <div class="stat-number" data-target="25">0</div>
+                </div>
+                            <div class="stat-label">Years Experience</div>
+            </div>
+                        <div class="stat-item animate-stat">
+                            <div class="stat-chart">
+                                <svg class="circular-chart" viewBox="0 0 36 36">
+                                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <path class="circle-progress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                </svg>
+                                <div class="stat-number" data-target="100">0</div>
+                    </div>
+                            <div class="stat-label">Happy Clients</div>
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.featured-image-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-image-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transform: translateX(-20px);
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.featured-image-wrapper.animate {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.featured-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.featured-image-wrapper:hover .featured-image {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(0,0,0,0.1), rgba(0,0,0,0.05));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.featured-image-wrapper:hover .image-overlay {
+    opacity: 1;
+}
+
+.featured-content {
+    padding-left: 30px;
+}
+
+.animate-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.animate-text.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.featured-stats {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.stat-item {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.stat-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-chart {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+}
+
+.circular-chart {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3;
+}
+
+.circle-progress {
+    fill: none;
+    stroke: #007bff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 2s ease-in-out;
+}
+
+.stat-item.animate .circle-progress {
+    stroke-dashoffset: 0;
+}
+
+.stat-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.stat-label {
+    text-align: center;
+    font-size: 1rem;
+    color: #6c757d;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+@media (max-width: 992px) {
+    .featured-content {
+        padding-left: 0;
+        margin-top: 30px;
+    }
+    
+    .featured-stats {
+        gap: 20px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+        margin-bottom: 0;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Existing code...
+    
+    // Animated counter function
+    function animateCounter(element) {
+        const target = parseInt(element.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const step = target / (duration / 16); // 60fps
+        let current = 0;
+        
+        const updateCounter = () => {
+            current += step;
+            if (current < target) {
+                element.textContent = Math.floor(current) + '+';
+                requestAnimationFrame(updateCounter);
+            } else {
+                element.textContent = target + '+';
+            }
+        };
+        
+        updateCounter();
+    }
+    
+    // Enhanced intersection observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                
+                // Start counter animation when stat item becomes visible
+                if (entry.target.classList.contains('stat-item')) {
+                    const numberElement = entry.target.querySelector('.stat-number');
+                    if (numberElement) {
+                        animateCounter(numberElement);
+                    }
+                }
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+    
+    // Observe all animated elements
+    const animatedElements = document.querySelectorAll('.featured-image-wrapper, .animate-text, .stat-item');
+    animatedElements.forEach(element => observer.observe(element));
+});
+</script>
+
+<!-- Design Process Section -->
+<section class="design-process py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Steps -->
+            <div class="col-lg-3">
+                <div class="process-steps left-steps">
+                    <div class="process-step animate-on-scroll" data-delay="0">
+                        <div class="step-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="step-content">
+                            <h4>DESIGN ANALYSIS</h4>
+                            <p>Understand the client's requirements and project purpose through site study and stakeholder interviews.</p>
+                        </div>
+                    </div>
+                    <div class="process-step animate-on-scroll" data-delay="200">
+                        <div class="step-icon">
+                            <i class="fas fa-pencil-alt"></i>
+                        </div>
+                        <div class="step-content">
+                            <h4>INITIAL DESIGN & PLANNING</h4>
+                            <p>Develop preliminary concepts and planning layouts with sketches and zoning diagrams.</p>
+                        </div>
+                    </div>
+                    <div class="process-step animate-on-scroll" data-delay="400">
+                        <div class="step-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="step-content">
+                            <h4>COST ESTIMATES & BUDGETS</h4>
+                            <p>Prepare detailed cost estimates and budgets based on initial plans.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Image -->
+            <div class="col-lg-6">
+                <div class="process-image animate-on-scroll" data-delay="100">
+                    <img src="{{ url_for('static', filename='images/expertise/image14.jpg') }}" 
+                         alt="Design Process" 
+                         class="img-fluid rounded-3 shadow">
+                    <div class="image-overlay">
+                        <h3>Our Design Process</h3>
+                        <p>From Concept to Completion</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Steps -->
+            <div class="col-lg-3">
+                <div class="process-steps right-steps">
+                    <div class="process-step animate-on-scroll" data-delay="300">
+                        <div class="step-icon">
+                            <i class="fas fa-drafting-compass"></i>
+                    </div>
+                        <div class="step-content">
+                            <h4>FINAL DESIGN</h4>
+                            <p>Refine and finalize the design with comprehensive construction drawings.</p>
+                </div>
+            </div>
+                    <div class="process-step animate-on-scroll" data-delay="500">
+                        <div class="step-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div class="step-content">
+                            <h4>TENDER DOCUMENTS</h4>
+                            <p>Prepare detailed documentation for contractors to bid on the project.</p>
+                        </div>
+                    </div>
+                    <div class="process-step animate-on-scroll" data-delay="700">
+                        <div class="step-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <div class="step-content">
+                            <h4>EXECUTION & COMPLETION</h4>
+                            <p>Provide guidance during construction and ensure successful project completion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.expertise-section {
+    position: relative;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.expertise-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+}
+
+.expertise-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+}
+
+.hexagon-gallery {
+    position: relative;
+    z-index: 1;
+}
+
+.hex-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.first-row {
+    margin-top: 40px; /* Added margin to move first row down */
+}
+
+.second-row {
+    gap: 50px; /* Increased gap between hexagons in second row */
+}
+
+.hex-item {
+    position: relative;
+    width: 160px;
+    height: 185px;
+    transform-origin: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.hex-item:hover {
+    z-index: 5; /* Increased z-index to ensure it appears above others when hovered */
+    /* transform: scale(1.05); - Removed this line */
+}
+
+.hex-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.hex-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.hex-item:hover .hex-content::before {
+    opacity: 1;
+}
+
+.hex-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hex-item:hover .hex-content img {
+    transform: scale(1.1);
+}
+
+.hex-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hex-item:hover .hex-overlay {
+    opacity: 1;
+}
+
+.hex-overlay h4 {
+    color: white;
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 0 20px;
+    margin: 0;
+    transform: translateY(20px);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hex-item:hover .hex-overlay h4 {
+    transform: translateY(0);
+}
+
+.hex-content.center-text {
+    position: relative;
+}
+
+.hex-content.center-text img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.center-text {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 992px) {
+    .hexagon-gallery {
+        gap: 30px;
+    }
+    
+    .hex-item {
+        width: 120px;
+        height: 138px;
+    }
+    
+    .first-row {
+        margin-top: 30px; /* Adjusted for medium screens */
+    }
+    
+    .second-row {
+        gap: 40px; /* Adjusted for medium screens */
+    }
+    
+    .center-text {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hexagon-gallery {
+        gap: 20px;
+    }
+    
+    .hex-item {
+        width: 100px;
+        height: 115px;
+    }
+    
+    .first-row {
+        margin-top: 20px; /* Adjusted for small screens */
+    }
+    
+    .second-row {
+        gap: 30px; /* Adjusted for small screens */
+    }
+    
+    .center-text {
+        font-size: 1.4rem;
+    }
+}
+
+.large-image-view {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    margin: 0;
+    height: fit-content;
+}
+
+.large-image-view:hover {
+    transform: translateY(-50%) scale(1.02);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 75%;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background: #f8f9fa;
+}
+
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+
+.large-image-view:hover .image-container::before {
+    opacity: 1;
+}
+
+.selected-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+.large-image-view:hover .selected-image {
+    transform: scale(1.08);
+}
+
+.image-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 25px;
+    background: linear-gradient(to top, 
+        rgba(0,0,0,0.95) 0%,
+        rgba(0,0,0,0.8) 50%,
+        rgba(0,0,0,0) 100%
+    );
+    color: white;
+    font-size: 1.6rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+}
+
+.large-image-view:hover .image-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add a subtle shine effect */
+.image-container::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+    z-index: 1;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+/* Add a subtle pulse animation to the container */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.large-image-view {
+    animation: pulse 4s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .expertise-section {
+        min-height: auto;
+        padding: 3rem 0;
+    }
+    
+    .large-image-view {
+        position: relative;
+        top: auto;
+        transform: none;
+        margin-top: 30px;
+        padding: 20px;
+    }
+    
+    .large-image-view:hover {
+        transform: scale(1.02);
+    }
+}
+
+@media (max-width: 768px) {
+    .expertise-section {
+        padding: 2rem 0;
+    }
+    
+    .large-image-view {
+        padding: 15px;
+    }
+}
+
+.section-header {
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.section-header h2 {
+    background: linear-gradient(135deg, #1a73e8, #4285f4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #1a73e8, #4285f4);
+    border-radius: 2px;
+}
+
+.quote-container {
+    margin-top: 2rem;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    position: relative;
+    transform: translateY(0);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.quote-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+}
+
+.quote-container::before {
+    content: '"';
+    position: absolute;
+    top: -30px;
+    left: 30px;
+    font-size: 6rem;
+    color: rgba(26, 115, 232, 0.1);
+    font-family: serif;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.quote-container::after {
+    content: '"';
+    position: absolute;
+    bottom: -30px;
+    right: 30px;
+    font-size: 6rem;
+    color: rgba(26, 115, 232, 0.1);
+    font-family: serif;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.quote-text {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.quote-author {
+    font-size: 1.2rem;
+    color: #1a73e8;
+    font-weight: 600;
+    text-align: right;
+    padding-right: 1.5rem;
+    position: relative;
+}
+
+.quote-author::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #1a73e8);
+}
+
+@media (max-width: 992px) {
+    .section-header {
+        padding-bottom: 1.5rem;
+    }
+    
+    .quote-container {
+        padding: 2rem;
+    }
+    
+    .quote-text {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .quote-container {
+        padding: 1.5rem;
+    }
+    
+    .quote-text {
+        font-size: 1.3rem;
+    }
+    
+    .quote-author {
+        font-size: 1.1rem;
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.process-step {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.right-steps .process-step {
+    transform: translateX(30px);
+}
+
+.process-step.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.process-image {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.process-image.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+</style>
+
+<!-- Our Expertise Section -->
+<section class="expertise-section">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2 class="display-4 fw-bold mb-3">Our Expertise</h2>
+            <div class="quote-container">
+                <p class="quote-text">"Engineering Excellence, Building Dreams, Shaping Futures"</p>
+                <div class="quote-author">- NEO Infrastructure</div>
+        </div>
+                    </div>
+        <div class="row">
+            <div class="col-md-8">
+        <div class="hexagon-gallery">
+                    <!-- First Row - 2 Hexagons -->
+                    <div class="hex-row first-row">
+                        <div class="hex-item" data-image="{{ url_for('static', filename='images/expertise/image1.jpg') }}">
+                <div class="hex-content">
+                    <img src="{{ url_for('static', filename='images/expertise/image1.jpg') }}" alt="Structural Steel">
+                    <div class="hex-overlay">
+                                    <h4>Structural Steel</h4>
+                                </div>
+                        </div>
+                                </div>
+            
+                        <div class="hex-item" data-image="{{ url_for('static', filename='images/expertise/image2.jpg') }}">
+                <div class="hex-content">
+                    <img src="{{ url_for('static', filename='images/expertise/image2.jpg') }}" alt="PEB Buildings">
+                    <div class="hex-overlay">
+                        <h4>PEB Buildings</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+                    <!-- Second Row - 3 Hexagons -->
+                    <div class="hex-row second-row">
+                        <div class="hex-item" data-image="{{ url_for('static', filename='images/expertise/image3.jpg') }}">
+                <div class="hex-content">
+                    <img src="{{ url_for('static', filename='images/expertise/image3.jpg') }}" alt="Industrial Projects">
+                    <div class="hex-overlay">
+                                    <h4>Industrial Projects</h4>
+                                </div>
+                        </div>
+                                </div>
+
+                        <div class="hex-item" data-image="{{ url_for('static', filename='images/expertise/image7.jpg') }}">
+                <div class="hex-content">
+                                <img src="{{ url_for('static', filename='images/expertise/image7.jpg') }}" alt="Our Expertise">
+                        </div>
+            </div>
+
+                        <div class="hex-item" data-image="{{ url_for('static', filename='images/expertise/image4.jpg') }}">
+                <div class="hex-content">
+                    <img src="{{ url_for('static', filename='images/expertise/image4.jpg') }}" alt="Commercial Buildings">
+                    <div class="hex-overlay">
+                        <h4>Commercial Buildings</h4>
+                                </div>
+                    </div>
+                </div>
+            </div>
+
+                    <!-- Third Row - 2 Hexagons -->
+                    <div class="hex-row third-row">
+                        <div class="hex-item" data-image="{{ url_for('static', filename='images/expertise/image5.jpg') }}">
+                <div class="hex-content">
+                    <img src="{{ url_for('static', filename='images/expertise/image5.jpg') }}" alt="Infrastructure">
+                    <div class="hex-overlay">
+                                    <h4>Infrastructure</h4>
+                                </div>
+                        </div>
+            </div>
+
+                        <div class="hex-item" data-image="{{ url_for('static', filename='images/expertise/image6.jpg') }}">
+                <div class="hex-content">
+                    <img src="{{ url_for('static', filename='images/expertise/image6.jpg') }}" alt="Special Projects">
+                    <div class="hex-overlay">
+                                    <h4>Special Projects</h4>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        </div>
+            <div class="col-md-4">
+                <div class="large-image-view">
+                    <div class="image-container">
+                        <img src="" alt="Selected Image" class="selected-image">
+                        <div class="image-title"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects -->
+<section class="featured-projects py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold">Featured Projects</h2>
+            <p class="text-muted lead">Discover our latest architectural masterpieces</p>
+        </div>
+        
+        <div class="projects-scroll-container">
+            <div class="scroll-button left-scroll">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            
+            <div class="projects-scroll-wrapper">
+                <div class="projects-scroll">
+            {% for project in featured_projects %}
+                <div class="project-card">
+                        <div class="project-image">
+                    {% if project.images %}
+                    <img src="{{ url_for('static', filename='uploads/project_images/' + project.images[0].filename) }}" 
+                                 alt="{{ project.title }}" class="img-fluid">
+                    {% else %}
+                            <img src="{{ url_for('static', filename='images/project-placeholder.jpg') }}" 
+                                 alt="{{ project.title }}" class="img-fluid">
+                    {% endif %}
+                            <div class="project-overlay">
+                                <div class="project-content">
+                                    <div class="project-badge">
+                                        <span class="badge bg-{{ 'success' if project.status == 'completed' else 'primary' }}">
+                                            {{ project.status|title }}
+                                        </span>
+                                    </div>
+                    <div class="project-info">
+                                        <h5 class="project-title">{{ project.title }}</h5>
+                                        <div class="project-meta">
+                                            <div class="meta-item">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <span>{{ project.location }}</span>
+                                            </div>
+                                            <div class="meta-item">
+                                                <i class="fas fa-dollar-sign"></i>
+                                                <span>₹{{ "{:,.0f}".format(project.budget) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-actions">
+                                        <a href="{{ url_for('projects.project_detail', id=project.id) }}" class="btn btn-light">
+                                            <i class="fas fa-eye me-2"></i>
+                                            View Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="scroll-button right-scroll">
+                <i class="fas fa-chevron-right"></i>
+        </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.projects-scroll-container {
+    position: relative;
+    padding: 0 50px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.projects-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 15px; /* Space for scrollbar */
+}
+
+/* Custom Scrollbar Styles */
+.projects-scroll-wrapper::-webkit-scrollbar {
+    height: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.projects-scroll-wrapper::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.projects-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.projects-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Firefox scrollbar */
+.projects-scroll-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+}
+
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.scroll-button:hover {
+    background: #f8f9fa;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.left-scroll {
+    left: 0;
+}
+
+.right-scroll {
+    right: 0;
+}
+
+.projects-scroll {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+    transition: transform 0.3s ease;
+    will-change: transform;
+    cursor: grab;
+}
+
+.projects-scroll:active {
+    cursor: grabbing;
+}
+
+.project-card {
+    flex: 0 0 350px;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    height: 100%;
+    user-select: none;
+}
+
+.project-image {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.15);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 0) 0%, 
+                rgba(0, 0, 0, 0.7) 50%, 
+                rgba(0, 0, 0, 0.9) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-content {
+    width: 100%;
+    transform: translateY(30px);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-content {
+    transform: translateY(0);
+}
+
+.project-badge {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-badge {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-info {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.project-info::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    width: 50px;
+    height: 3px;
+    background: white;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-info::before {
+    transform: scaleX(1);
+}
+
+.project-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.project-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .meta-item {
+    transform: translateX(5px);
+}
+
+.meta-item i {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .meta-item i {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(360deg);
+}
+
+.project-actions {
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-actions .btn {
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project-actions .btn:hover {
+    background: white;
+    transform: translateX(5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-actions .btn i {
+    transition: transform 0.3s ease;
+}
+
+.project-actions .btn:hover i {
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .projects-scroll-container {
+        padding: 0 30px;
+    }
+    
+    .scroll-button {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .project-card {
+        flex: 0 0 300px;
+    }
+    
+    .project-image {
+        height: 280px;
+    }
+    
+    .project-title {
+        font-size: 1.4rem;
+    }
+    
+    .project-meta {
+        gap: 8px;
+    }
+    
+    .project-actions .btn {
+        padding: 10px 20px;
+    }
+}
+</style>
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set background images using data attributes
+    const slides = document.querySelectorAll('.hero-slide');
+    slides.forEach(slide => {
+        const bgUrl = slide.getAttribute('data-bg');
+        if (bgUrl) {
+            slide.style.backgroundImage = `url('${bgUrl}')`;
+        }
+    });
+
+    // Existing project scroll code needs to be re-added if it was removed
+    const scrollContainer = document.querySelector('.projects-scroll');
+    const wrapper = document.querySelector('.projects-scroll-wrapper');
+    const leftButton = document.querySelector('.left-scroll');
+    const rightButton = document.querySelector('.right-scroll');
+    if (scrollContainer && wrapper && leftButton && rightButton) {
+        const cardWidth = 350; // Width of each project card
+        const gap = 20; // Gap between cards
+        const scrollAmount = (cardWidth + gap) * 2; // Scroll 2 cards at a time
+
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        scrollContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - scrollContainer.offsetLeft;
+            scrollLeft = wrapper.scrollLeft;
+            scrollContainer.style.cursor = 'grabbing';
+        });
+        scrollContainer.addEventListener('mouseleave', () => { isDown = false; scrollContainer.style.cursor = 'grab'; });
+        scrollContainer.addEventListener('mouseup', () => { isDown = false; scrollContainer.style.cursor = 'grab'; });
+        scrollContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            wrapper.scrollLeft = scrollLeft - walk;
+        });
+        scrollContainer.addEventListener('touchstart', (e) => {
+            isDown = true;
+            startX = e.touches[0].pageX - scrollContainer.offsetLeft;
+            scrollLeft = wrapper.scrollLeft;
+        });
+        scrollContainer.addEventListener('touchend', () => { isDown = false; });
+        scrollContainer.addEventListener('touchmove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.touches[0].pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            wrapper.scrollLeft = scrollLeft - walk;
+        });
+
+        leftButton.addEventListener('click', () => {
+            wrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+        rightButton.addEventListener('click', () => {
+            wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        function updateButtonVisibility() {
+            const scrollLeftVal = wrapper.scrollLeft;
+            const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+            leftButton.style.opacity = scrollLeftVal > 0 ? '1' : '0.5';
+            rightButton.style.opacity = scrollLeftVal < maxScroll - 1 ? '1' : '0.5'; // -1 for precision
+        }
+        wrapper.addEventListener('scroll', updateButtonVisibility);
+        updateButtonVisibility();
+    }
+
+    const hexItems = document.querySelectorAll('.hex-item');
+    const selectedImage = document.querySelector('.selected-image');
+    const imageTitle = document.querySelector('.image-title');
+    const largeImageView = document.querySelector('.large-image-view');
+
+    // Set initial image (center hexagon)
+    const initialImage = document.querySelector('.hex-item[data-image*="image7.jpg"]');
+    if (initialImage) {
+        selectedImage.src = initialImage.getAttribute('data-image');
+        imageTitle.textContent = 'Our Expertise';
+    }
+
+    hexItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const imageUrl = this.getAttribute('data-image');
+            const title = this.querySelector('.hex-overlay h4')?.textContent || 'Our Expertise';
+            
+            selectedImage.src = imageUrl;
+            imageTitle.textContent = title;
+            
+            // Add animation class
+            largeImageView.classList.add('image-updated');
+            setTimeout(() => {
+                largeImageView.classList.remove('image-updated');
+            }, 300);
+        });
+    });
+});
+</script>
+{% endblock %}
+
+<!-- Services Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Our Services</h2>
+            <p class="text-muted">Comprehensive solutions tailored to your needs</p>
+        </div>
+        <div class="row g-4">
+            <!-- Structural Engineering -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-block h-100">
+                    <div class="service-block-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Structural Engineering</h4>
+                    <ul class="list-unstyled service-list">
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Pre-Engineered Buildings (PEB)</h6>
+                                    <p class="text-muted small mb-0">Custom designed for optimal efficiency</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Industrial & Commercial Buildings</h6>
+                                    <p class="text-muted small mb-0">Robust and scalable solutions</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Multi-Story Buildings</h6>
+                                    <p class="text-muted small mb-0">Advanced vertical development</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Steel Structures Design</h6>
+                                    <p class="text-muted small mb-0">Precision engineered frameworks</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Infrastructure Design -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-block h-100">
+                    <div class="service-block-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Infrastructure Design</h4>
+                    <ul class="list-unstyled service-list">
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Solar Power Projects</h6>
+                                    <p class="text-muted small mb-0">Sustainable energy solutions</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Industrial Infrastructure</h6>
+                                    <p class="text-muted small mb-0">Comprehensive facility planning</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Transportation Structures</h6>
+                                    <p class="text-muted small mb-0">Connected mobility solutions</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Water Treatment Plants</h6>
+                                    <p class="text-muted small mb-0">Advanced processing systems</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Storage Solutions</h6>
+                                    <p class="text-muted small mb-0">Optimized space utilization</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Consultancy Services -->
+            <div class="col-lg-4 col-md-12">
+                <div class="service-block h-100">
+                    <div class="service-block-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Consultancy Services</h4>
+                    <ul class="list-unstyled service-list">
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Project Planning & Management</h6>
+                                    <p class="text-muted small mb-0">Strategic execution framework</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Structural Auditing</h6>
+                                    <p class="text-muted small mb-0">Comprehensive safety analysis</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Quality Assurance</h6>
+                                    <p class="text-muted small mb-0">Rigorous quality standards</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Technical Documentation</h6>
+                                    <p class="text-muted small mb-0">Detailed project documentation</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="service-item">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <div>
+                                    <h6 class="fw-semibold mb-0">Value Engineering</h6>
+                                    <p class="text-muted small mb-0">Cost-effective optimization</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Styles for Our Services Section */
+.service-block {
+    background: white;
+    padding: 35px 30px; /* Increased padding */
+    border-radius: 16px; /* Softer radius */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07); /* Slightly deeper shadow */
+    border-left: none; /* Remove left border */
+    border-top: 4px solid transparent; /* Prepare for top border hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-top-color 0.3s ease;
+    position: relative; /* Needed for potential pseudo-elements */
+    overflow: hidden; /* Hide overflow for potential effects */
+}
+
+.service-block:hover {
+    transform: translateY(-6px); /* More noticeable lift */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Deeper shadow on hover */
+    border-top-color: var(--bs-primary); /* Show top border on hover */
+}
+
+.service-block-icon {
+    width: 55px; /* Slightly larger icon */
+    height: 55px;
+    margin-bottom: 25px;
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+    border-radius: 12px; /* Adjusted radius */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; /* Larger icon font size */
+    color: var(--bs-primary);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.service-block:hover .service-block-icon {
+    transform: scale(1.1) rotate(-5deg); /* Add subtle rotation/scale */
+    background-color: rgba(var(--bs-primary-rgb), 0.15);
+}
+
+.service-block h4 {
+    position: relative;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    font-weight: 600; /* Slightly bolder */
+}
+
+.service-block h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px; /* Longer underline */
+    height: 3px; /* Thicker underline */
+    background-color: var(--bs-primary);
+    transition: width 0.3s ease;
+}
+
+.service-block:hover h4::after {
+    width: 70px; /* Extend underline on hover */
+}
+
+.service-list li {
+    margin-bottom: 18px; /* Increased spacing */
+}
+
+.service-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px; /* Increased gap */
+}
+
+.service-item i {
+    margin-top: 5px; 
+    font-size: 18px; /* Larger check icon */
+    color: var(--bs-primary); /* Ensure icon color */
+    transition: transform 0.3s ease;
+}
+
+.service-block:hover .service-item i {
+    transform: scale(1.1); /* Scale icon on hover */
+}
+
+.service-item h6 {
+    line-height: 1.4;
+    font-weight: 500; /* Medium weight for service title */
+}
+
+.service-item p {
+    line-height: 1.5;
+}
+
+/* Styles for Why Choose Us Section */
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #6f42c1, #9b59b6); /* Example gradient */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+}
+
+.feature-card h5 {
+    margin-bottom: 15px;
+}
+
+.feature-card ul li {
+    display: flex;
+    align-items: flex-start;
+}
+
+.feature-card ul i {
+    margin-top: 3px; /* Align icon slightly better with text */
+}
+</style>
+
+<!-- Why Choose Us -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Why Choose Us</h2>
+            <p class="text-muted">Experience the difference with our construction expertise</p>
+            <h3 class="fw-semibold mt-4">Building Excellence, Delivering Trust</h3>
+            <p class="lead text-muted">We combine expertise, innovation, and dedication to deliver exceptional infrastructure solutions.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h5 class="fw-bold">25+ Years Experience</h5>
+                    <p class="text-muted small">Decades of excellence in delivering innovative structural engineering solutions across diverse sectors.</p>
+                    <ul class="list-unstyled mt-3 text-start small">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Industry Recognition</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Proven Track Record</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Expert Knowledge</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h5 class="fw-bold">900+ Projects</h5>
+                    <p class="text-muted small">Successfully delivered projects spanning industrial, commercial, and infrastructure sectors.</p>
+                    <ul class="list-unstyled mt-3 text-start small">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Diverse Portfolio</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Global Presence</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Timely Delivery</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h5 class="fw-bold">Expert Team</h5>
+                    <p class="text-muted small">Highly qualified professionals with specialized expertise in structural engineering and design.</p>
+                    <ul class="list-unstyled mt-3 text-start small">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Certified Engineers</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Continuous Training</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Collaborative Approach</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h5 class="fw-bold">Innovative Solutions</h5>
+                    <p class="text-muted small">Cutting-edge technologies and modern approaches for optimal engineering outcomes.</p>
+                    <ul class="list-unstyled mt-3 text-start small">
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Advanced Technology</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Sustainable Design</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Cost Efficiency</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Clients Section -->
+<section class="py-5 clients-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Trusted By</h2>
+            <p class="text-muted">We're proud to collaborate with industry leaders.</p>
+        </div>
+        <div class="clients-scroll-container">
+            <div class="clients-scroll-wrapper">
+                {% for client in clients %}
+                <div class="client-item">
+                    <div class="client-logo-wrapper">
+                            <img src="{{ url_for('static', filename='uploads/clients/' + client.logo_filename) }}" 
+                             alt="{{ client.name }}" 
+                             class="client-logo">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Trusted By Section Styles */
+.clients-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 4rem 0;
+    overflow: hidden;
+}
+
+.clients-scroll-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 2rem 0;
+}
+
+.clients-scroll-wrapper {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 30s linear infinite;
+    padding: 1rem 0;
+}
+
+.client-item {
+    flex: 0 0 auto;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.client-logo-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.client-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.client-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.client-item:hover .client-logo {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-200px * {{ clients|length }} - 3rem * {{ clients|length }}));
+    }
+}
+
+/* Pause animation on hover */
+.clients-scroll-container:hover .clients-scroll-wrapper {
+    animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .client-item {
+        width: 150px;
+        height: 75px;
+    }
+    
+    .clients-scroll-wrapper {
+        gap: 2rem;
+    }
+    
+    .clients-section {
+        padding: 3rem 0;
+    }
+}
+</style>
+
+<!-- Testimonials -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">What Our Clients Say</h2>
+            <p class="text-muted">Real stories from satisfied partners and clients.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            {% if featured_testimonials %}
+                {% for testimonial in featured_testimonials %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card h-100">
+                        <div class="card-body">
+                            <div class="testimonial-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p class="testimonial-text fst-italic mb-4">"{{ testimonial.quote }}"</p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                {% if testimonial.image_filename %}
+                                <img src="{{ url_for('static', filename='uploads/testimonials/' + testimonial.image_filename) }}" 
+                                     alt="{{ testimonial.name }}" class="testimonial-img rounded-circle me-3">
+                                {% else %}
+                                 <img src="{{ url_for('static', filename='images/avatar-placeholder.png') }}" 
+                                     alt="Placeholder" class="testimonial-img rounded-circle me-3">
+                                {% endif %}
+                            <div>
+                                    <h6 class="mb-0 fw-bold">{{ testimonial.name }}</h6>
+                                    <p class="text-muted mb-0 small">{{ testimonial.company or 'Valued Client' }}</p>
+            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+            <div class="col-12">
+                <p class="text-center text-muted">No testimonials available at the moment.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<style>
+/* Add these styles if they don't exist from testimonials.html, 
+   or ensure they are consistent */
+.testimonial-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    padding: 30px;
+    text-align: center;
+    border-top: 4px solid var(--bs-primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-icon {
+    font-size: 2rem;
+    color: var(--bs-primary);
+    opacity: 0.3;
+    margin-bottom: 15px;
+}
+
+.testimonial-text {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.testimonial-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+/* -- End Testimonial Styles -- */
+
+/* Keep other styles (.service-block, .feature-card) below */
+
+/* Styles for Home Page Clients Section */
+.clients-section {
+    background-color: #f8f9fa; /* Light background for contrast */
+}
+
+.client-logo-home {
+    width: auto; 
+    height: auto; 
+    max-height: 70px; /* Keep max height constraint */
+    max-width: 100%; 
+    opacity: 0.9; 
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Updated hover effect directly on the logo */
+.client-logo-home:hover {
+    opacity: 1;
+    transform: scale(1.08); /* Keep scale effect */
+}
+
+.client-name-home {
+    font-weight: 500;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Styles for Our Services Section */
+.service-block {
+    background: white;
+    padding: 35px 30px; /* Increased padding */
+    /* ... rest of service-block styles ... */
+}
+
+/* ... other existing styles ... */
+
+.design-process {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.process-image {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+}
+
+.process-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 1rem;
+    transition: transform 0.5s ease;
+}
+
+.process-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.process-image:hover img {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 1rem;
+}
+
+.image-overlay h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.image-overlay p {
+    font-size: 1.2rem;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.process-step:hover {
+    transform: translateX(10px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.right-steps .process-step:hover {
+    transform: translateX(-10px);
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    background: #007bff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.step-content p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+@media (max-width: 991.98px) {
+    .process-steps {
+        margin-top: 2rem;
+    }
+    
+    .process-step {
+        padding: 1rem;
+    }
+    
+    .step-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .step-content h4 {
+        font-size: 1rem;
+    }
+    
+    .step-content p {
+        font-size: 0.8rem;
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.process-step {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.right-steps .process-step {
+    transform: translateX(30px);
+}
+
+.process-step.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.process-image {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.process-image.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing code ...
+    
+    // Scroll animation observer
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = entry.target.getAttribute('data-delay') || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, delay);
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe all animated elements
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(element => scrollObserver.observe(element));
+});
+</script>
+
+<style>
+/* Hexagon Gallery Styles */
+.hexagon-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 20px 0;
+}
+
+.hex-row {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: -30px; /* Base negative margin */
+}
+
+.hex-item {
+    width: 200px;
+    height: 230px;
+    margin: 0 -2px; /* Small negative margin to close horizontal gaps */
+    position: relative;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: all 0.3s ease;
+    z-index: 1;
+    transform: translateX(0);
+}
+
+.hex-item:hover {
+    z-index: 5; /* Increased z-index to ensure it appears above others when hovered */
+    /* transform: scale(1.05); - Removed this line */
+}
+
+.hex-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.hex-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.hex-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hex-item:hover .hex-overlay {
+    opacity: 1;
+}
+
+.hex-overlay h4 {
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+    font-size: 1.2rem;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.hex-item:hover .hex-overlay h4 {
+    transform: translateY(0);
+}
+
+/* Row-specific styles */
+.first-row {
+    margin-bottom: -60px; /* Keep the first-to-second row spacing */
+}
+
+.second-row {
+    margin-bottom: -55px; /* Increased negative margin to bring third row closer */
+    padding-top: 0; /* Ensure no extra space is added */
+}
+
+.third-row {
+    margin-top: 0;
+}
+
+.second-row .hex-item:nth-child(2) {
+    /* Remove the scale transform to make it the same size as others */
+    /* transform: scale(1.1); */
+    z-index: 2;
+}
+
+.second-row .hex-item:nth-child(2):hover {
+    /* Keep the same size as other hexagons */
+    /* transform: scale(1.1); */
+    z-index: 6; /* Ensure it's above other elements when hovered */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hex-item {
+        width: 150px;
+        height: 173px;
+        margin: 0 -1px; /* Smaller negative margin for medium screens */
+    }
+    
+    .hex-overlay h4 {
+        font-size: 1rem;
+    }
+    
+    .first-row {
+        margin-bottom: -45px; /* Adjusted for smaller screens */
+    }
+    
+    .second-row {
+        margin-bottom: -42px; /* Adjusted for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .hex-item {
+        width: 120px;
+        height: 138px;
+        margin: 0 -1px; /* Smaller negative margin for small screens */
+    }
+    
+    .hex-overlay h4 {
+        font-size: 0.9rem;
+    }
+    
+    .first-row {
+        margin-bottom: -38px; /* Adjusted for smallest screens */
+    }
+    
+    .second-row {
+        margin-bottom: -35px; /* Adjusted for smallest screens */
+    }
+}
+</style>
+{% endblock %} 

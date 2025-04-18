@@ -1,0 +1,902 @@
+{% extends "base.html" %}
+
+{% block title %}Certifications - Neo Infrastructure{% endblock %}
+
+{% block content %}
+<!-- Certificates Hero Section -->
+<section class="certificates-hero">
+    <div class="hero-particles"></div>
+    <div class="hero-floating-shapes">
+        <div class="floating-shape shape1"></div>
+        <div class="floating-shape shape2"></div>
+        <div class="floating-shape shape3"></div>
+        <div class="floating-shape shape4"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <div class="row min-vh-50 align-items-center text-center">
+            <div class="col-lg-10 mx-auto">
+                <div class="hero-content">
+                    <span class="hero-badge animate-up">Excellence & Standards</span>
+                    <h1 class="display-3 fw-bold mb-4 animate-up delay-1 text-white hero-title">
+                        Our <span class="text-gradient">Certifications</span> & <span class="text-gradient">Accreditations</span>
+                    </h1>
+                    <p class="lead mb-5 animate-up delay-2 text-white-75">Demonstrating our commitment to quality, safety, and industry standards through internationally recognized certifications.</p>
+                    <div class="hero-stats animate-up delay-3">
+                        <div class="stat-item">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15</div>
+                            <div class="stat-label">Years Accredited</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Compliance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator animate-up delay-4">
+            <span>Explore Our Credentials</span>
+            <div class="chevron"></div>
+            <div class="chevron"></div>
+            <div class="chevron"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Certificate Categories -->
+<section class="certificate-categories py-5">
+    <div class="container">
+        <div class="category-container">
+            <div class="category-item active" data-category="all">
+                <div class="category-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <span>All</span>
+            </div>
+            <div class="category-item" data-category="iso">
+                <div class="category-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <span>ISO</span>
+            </div>
+            <div class="category-item" data-category="safety">
+                <div class="category-icon">
+                    <i class="fas fa-hard-hat"></i>
+                </div>
+                <span>Safety</span>
+            </div>
+            <div class="category-item" data-category="environmental">
+                <div class="category-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <span>Environmental</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certificates Grid -->
+<section class="certificates-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <div class="badge-container">
+                <span class="section-badge">Our Credentials</span>
+            </div>
+            <h2 class="section-title">Industry Recognition</h2>
+            <p class="section-subtitle">Demonstrating our commitment to excellence through internationally recognized certifications</p>
+            <div class="title-underline"></div>
+        </div>
+        
+        <div class="row g-4 justify-content-center certificates-grid">
+            {# Loop through certificates passed from the route #}
+            {# Assuming a list of cert objects/dicts, each with name, issuing_body, and image_filename #}
+            {% set certificates_placeholder = [
+                { 'name': 'ISO 9001:2015', 'issuing_body': 'International Organization for Standardization', 'image_filename': 'cert-placeholder-1.png', 'category': 'iso', 'year': '2022' },
+                { 'name': 'OHSAS 18001', 'issuing_body': 'Occupational Health & Safety', 'image_filename': 'cert-placeholder-2.png', 'category': 'safety', 'year': '2023' },
+                { 'name': 'Industry Safety Award 2023', 'issuing_body': 'National Safety Council', 'image_filename': 'cert-placeholder-3.png', 'category': 'safety', 'year': '2023' },
+                { 'name': 'Green Building Certification', 'issuing_body': 'Regional Green Council', 'image_filename': 'cert-placeholder-4.png', 'category': 'environmental', 'year': '2021' },
+            ] %}
+            {% for cert in certificates or certificates_placeholder %} 
+            <div class="col-md-6 col-lg-4 certificate-item" data-category="{{ cert.category }}">
+                <div class="certificate-card h-100">
+                    <div class="certificate-seal"><i class="fas fa-award"></i></div>
+                    {% if cert.image_filename %}
+                    <div class="certificate-image mb-4">
+                         <img src="{{ url_for('static', filename='uploads/certificates/' + cert.image_filename) }}" 
+                             alt="{{ cert.name }}" class="img-fluid rounded">
+                    </div>
+                    {% endif %}
+                    <div class="certificate-info">
+                        <h4 class="fw-bold mb-2">{{ cert.name }}</h4>
+                        <p class="issuing-body mb-3">{{ cert.issuing_body }}</p>
+                        <div class="certificate-meta">
+                            <span class="certificate-year"><i class="far fa-calendar-alt me-2"></i>{{ cert.year }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <div class="no-certificates-message">
+                    <div class="message-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certification details are currently unavailable</h3>
+                    <p>Please check back later to see our accreditations.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Trust Indicator Section -->
+<section class="trust-indicator py-5">
+    <div class="container">
+        <div class="trust-card">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2>Trust in Our Expertise & Standards</h2>
+                    <p>Our certifications reflect our commitment to delivering projects that meet the highest industry standards and regulatory requirements.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                    <a href="{{ url_for('contact.contact') }}" class="btn btn-primary btn-lg">
+                        <span>Contact Us</span>
+                        <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Certificates Hero Section */
+.certificates-hero {
+    background-image: url("{{ url_for('static', filename='images/certificates-hero.jpg') }}"), linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    position: relative;
+    padding: 120px 0 150px;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    min-height: 60vh;
+}
+
+.hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.15) 2px, transparent 2px);
+    background-size: 40px 40px;
+    z-index: 1;
+}
+
+.hero-floating-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.floating-shape {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.15) 0%, rgba(0, 242, 254, 0.15) 100%);
+    border-radius: 10px;
+    opacity: 0.7;
+}
+
+.shape1 {
+    width: 80px;
+    height: 80px;
+    top: 15%;
+    left: 10%;
+    transform: rotate(15deg);
+    animation: float 8s ease-in-out infinite;
+}
+
+.shape2 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    left: 15%;
+    transform: rotate(45deg);
+    animation: float 10s ease-in-out infinite 1s;
+}
+
+.shape3 {
+    width: 90px;
+    height: 90px;
+    top: 25%;
+    right: 10%;
+    transform: rotate(30deg);
+    animation: float 9s ease-in-out infinite 2s;
+}
+
+.shape4 {
+    width: 50px;
+    height: 50px;
+    bottom: 20%;
+    right: 20%;
+    transform: rotate(60deg);
+    animation: float 7s ease-in-out infinite 0.5s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(10,10,30,0.8) 0%, rgba(10,10,30,0.6) 100%);
+    z-index: 3;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+    padding: 2.5rem;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(0);
+    transition: transform 0.5s ease;
+}
+
+.hero-content:hover {
+    transform: translateY(-10px);
+}
+
+.hero-title {
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+}
+
+.text-gradient::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+}
+
+.hero-content:hover .text-gradient::after {
+    transform: scaleX(1);
+}
+
+.text-white-75 {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.2rem;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    color: white;
+    padding: 0.6rem 2rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -1.5rem;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #fff, #e0e0e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.25rem;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    z-index: 10;
+}
+
+.scroll-indicator span {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+}
+
+.chevron {
+    position: relative;
+    width: 28px;
+    height: 8px;
+    opacity: 0;
+    transform: scale(0.3);
+    animation: move-chevron 3s ease-out infinite;
+}
+
+.chevron:first-child {
+    animation: move-chevron 3s ease-out 1s infinite;
+}
+
+.chevron:nth-child(2) {
+    animation: move-chevron 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    background: #fff;
+}
+
+.chevron:before {
+    left: 0;
+    transform: skewY(30deg);
+}
+
+.chevron:after {
+    right: 0;
+    width: 50%;
+    transform: skewY(-30deg);
+}
+
+@keyframes move-chevron {
+    25% {
+        opacity: 1;
+        transform: translateY(10px) scale(0.8);
+    }
+    33% {
+        opacity: 1;
+        transform: translateY(16px) scale(0.9);
+    }
+    67% {
+        opacity: 1;
+        transform: translateY(22px) scale(0.9);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(32px) scale(0.8);
+    }
+}
+
+/* Animation Classes */
+.animate-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.delay-3 {
+    animation-delay: 0.6s;
+}
+
+.delay-4 {
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Certificate Categories */
+.certificate-categories {
+    background: white;
+    margin-top: -30px;
+    position: relative;
+    z-index: 10;
+}
+
+.category-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.category-item {
+    text-align: center;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-item:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.category-item:hover:before,
+.category-item.active:before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.category-item:hover,
+.category-item.active {
+    background: #f8f9fa;
+    transform: translateY(-3px);
+}
+
+.category-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0.1) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #4facfe;
+    margin: 0 auto 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.category-item:hover .category-icon,
+.category-item.active .category-icon {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    transform: rotate(10deg);
+}
+
+.category-item span {
+    font-weight: 600;
+    color: #495057;
+    transition: all 0.3s ease;
+}
+
+/* Certificates Section */
+.certificates-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.badge-container {
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.badge-container:before,
+.badge-container:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(79, 172, 254, 0.5), rgba(0, 242, 254, 0.5));
+}
+
+.badge-container:before {
+    right: calc(100% + 15px);
+}
+
+.badge-container:after {
+    left: calc(100% + 15px);
+}
+
+.section-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #333;
+    position: relative;
+    display: inline-block;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    max-width: 700px;
+    margin: 0 auto 1rem;
+}
+
+.title-underline {
+    height: 4px;
+    width: 80px;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    margin: 0 auto;
+    border-radius: 2px;
+    position: relative;
+}
+
+.title-underline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Certificate Cards */
+.certificate-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.certificate-card:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    transition: height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: -1;
+}
+
+.certificate-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: rgba(79, 172, 254, 0.2);
+}
+
+.certificate-card:hover:after {
+    height: 100%;
+    opacity: 0.05;
+}
+
+.certificate-seal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+    transition: all 0.3s ease;
+}
+
+.certificate-card:hover .certificate-seal {
+    transform: rotate(360deg);
+}
+
+.certificate-image {
+    position: relative;
+    margin-top: 1rem;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-image img {
+    max-height: 200px;
+    object-fit: contain;
+    transition: all 0.5s ease;
+}
+
+.certificate-card:hover .certificate-image img {
+    transform: scale(1.05);
+}
+
+.certificate-info {
+    padding: 0.5rem;
+}
+
+.certificate-info h4 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.certificate-card:hover .certificate-info h4 {
+    color: #4facfe;
+}
+
+.issuing-body {
+    color: #6c757d;
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.certificate-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+.certificate-year {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.no-certificates-message {
+    background: white;
+    border-radius: 15px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.message-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0.1) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #4facfe;
+    margin: 0 auto 1.5rem;
+}
+
+/* Trust Indicator Section */
+.trust-indicator {
+    background: white;
+}
+
+.trust-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.trust-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, #4facfe, #00f2fe);
+}
+
+.trust-card h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.trust-card p {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+.trust-card .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    border: none;
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+    transition: all 0.3s ease;
+}
+
+.trust-card .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+}
+
+.trust-card .btn i {
+    transition: transform 0.3s ease;
+}
+
+.trust-card .btn:hover i {
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .certificate-card {
+        padding: 20px;
+    }
+    
+    .certificate-image img {
+        max-height: 180px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .trust-card {
+        padding: 2rem;
+    }
+    
+    .trust-card h2 {
+        font-size: 1.75rem;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Category filter functionality
+    const categoryButtons = document.querySelectorAll('.category-item');
+    const certificateItems = document.querySelectorAll('.certificate-item');
+    
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            const filter = button.getAttribute('data-category');
+            
+            certificateItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+});
+</script>
+{% endblock %} 

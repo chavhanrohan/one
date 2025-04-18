@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Construction Company{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">
+                <span class="neo-logo">
+                    <span class="neo">NEO</span><span class="infrastructure">Infrastructure</span>
+                    <span class="glow-effect"></span>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {{ 'active' if request.endpoint == 'main.index' }}" href="{{ url_for('main.index') }}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ 'active' if request.endpoint in ['main.about', 'main.services', 'main.clients', 'main.certificates', 'main.testimonials'] }}" 
+                           href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            About
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                            <li><a class="dropdown-item {{ 'active' if request.endpoint == 'main.about' }}" href="{{ url_for('main.about') }}">About Us</a></li>
+                            <li><a class="dropdown-item {{ 'active' if request.endpoint == 'main.services' }}" href="{{ url_for('main.services') }}">Services</a></li>
+                            <li><a class="dropdown-item {{ 'active' if request.endpoint == 'main.clients' }}" href="{{ url_for('main.clients') }}">Clients</a></li>
+                            <li><a class="dropdown-item {{ 'active' if request.endpoint == 'main.certificates' }}" href="{{ url_for('main.certificates') }}">Certificates</a></li>
+                            <li><a class="dropdown-item {{ 'active' if request.endpoint == 'main.testimonials' }}" href="{{ url_for('main.testimonials') }}">Testimonials</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ 'active' if request.endpoint and request.endpoint.startswith('projects.') }}" href="{{ url_for('projects.project_list') }}">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ 'active' if request.endpoint and request.endpoint.startswith('contact.') }}" href="{{ url_for('contact.contact') }}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ 'active' if request.endpoint == 'main.career' }}" href="{{ url_for('main.career') }}">Career</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.is_admin %}
+                            <li class="nav-item">
+                                <a class="nav-link {{ 'active' if request.endpoint and request.endpoint.startswith('admin.') }}" href="{{ url_for('admin.dashboard') }}">Admin</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link {{ 'active' if request.endpoint == 'auth.logout' }}" href="{{ url_for('auth.logout') }}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link {{ 'active' if request.endpoint == 'auth.login' }}" href="{{ url_for('auth.login') }}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <!-- Contact Options Button -->
+        <div class="floating-contact">
+            <button class="contact-btn main-contact-btn" id="contactOptionsBtn">
+                <i class="fas fa-headset"></i>
+                <span>Contact Us</span>
+            </button>
+            
+            <!-- Contact Options Menu -->
+            <div class="contact-options-menu" id="contactOptionsMenu">
+                <a href="https://wa.me/919922535423" class="contact-option whatsapp-option" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="tel:+919922535423" class="contact-option call-option">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Call Us</span>
+                </a>
+                <a href="mailto:info@neoinfra.com" class="contact-option email-option">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email Us</span>
+                </a>
+                <button type="button" class="contact-option form-option" data-bs-toggle="modal" data-bs-target="#contactFormModal">
+                    <i class="fas fa-comment-dots"></i>
+                    <span>Contact Form</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- AI Assistant Button -->
+        <div class="floating-contact mt-2">
+            <button class="contact-btn ai-btn" type="button" id="chatToggleBtn">
+                <i class="fas fa-robot"></i>
+                <span>AI Assistant</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <h5><i class="fas fa-robot mr-2"></i> AI Construction Assistant</h5>
+            <button type="button" class="chat-close-btn" id="chatCloseBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-content">Hi there! I'm your AI construction assistant. How can I help you today?</div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userMessageInput" placeholder="Ask me anything about construction...">
+            <button type="button" id="sendMessageBtn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Contact Form Modal -->
+    <div class="modal fade" id="contactFormModal" tabindex="-1" aria-labelledby="contactFormModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactFormModalLabel">Contact Us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="quickContactForm" action="{{ url_for('contact.contact') }}" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Calculator Section -->
+    {% if request.endpoint == 'main.index' %}
+    <section id="project-calculator" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center mb-5">
+                    <div class="section-heading">
+                        <span class="badge bg-primary mb-2">Quick Estimate</span>
+                        <h2 class="title">Calculate Your Project Cost</h2>
+                        <p class="lead">Get an instant estimate for your construction project based on your requirements.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="card-body p-4 p-lg-5">
+                            <form id="projectCalculatorForm">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectType" class="form-label">Project Type</label>
+                                            <select class="form-select" id="projectType" required>
+                                                <option value="" selected disabled>Select Project Type</option>
+                                                <option value="residential">Residential</option>
+                                                <option value="commercial">Commercial</option>
+                                                <option value="industrial">Industrial</option>
+                                                <option value="infrastructure">Infrastructure</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectSize" class="form-label">Project Size (sq ft)</label>
+                                            <input type="number" class="form-control" id="projectSize" placeholder="Enter project size" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectComplexity" class="form-label">Project Complexity</label>
+                                            <select class="form-select" id="projectComplexity" required>
+                                                <option value="" selected disabled>Select Complexity</option>
+                                                <option value="simple">Simple</option>
+                                                <option value="moderate">Moderate</option>
+                                                <option value="complex">Complex</option>
+                                                <option value="very-complex">Very Complex</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectTimeline" class="form-label">Timeline (months)</label>
+                                            <input type="number" class="form-control" id="projectTimeline" placeholder="Enter timeline" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="projectDescription" class="form-label">Project Description</label>
+                                            <textarea class="form-control" id="projectDescription" rows="3" placeholder="Briefly describe your project requirements"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary btn-lg w-100">Calculate Estimate</button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <div id="estimateResult" class="mt-4 d-none">
+                                <div class="estimate-card p-4 bg-light rounded-3">
+                                    <h3 class="mb-3">Your Project Estimate</h3>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="estimate-item mb-3">
+                                                <span class="estimate-label">Estimated Cost:</span>
+                                                <span class="estimate-value" id="estimatedCost">₹0</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="estimate-item mb-3">
+                                                <span class="estimate-label">Timeline:</span>
+                                                <span class="estimate-value" id="estimatedTimeline">0 months</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="estimate-note mt-3">
+                                        <p class="mb-0"><small><i class="fas fa-info-circle me-2"></i>This is an approximate estimate. For a detailed quote, please contact our team.</small></p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <a href="{{ url_for('contact.contact') }}" class="btn btn-outline-primary">Get Detailed Quote</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Footer -->
+    <footer class="footer py-5 text-white">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-4 text-white">Neo Infraservices</h5>
+                    <p class="mb-4">Building Tomorrow's Infrastructure Today with innovation, quality, and excellence.</p>
+                    <div class="contact-info">
+                        <p class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>B, Jagat Housing Society,<br>Bairamji Town, Nagpur - 440013<br>Maharashtra, India</p>
+                        <p class="mb-2"><i class="fas fa-phone me-2"></i>+91 9922535423</p>
+                        <p class="mb-2"><i class="fas fa-envelope me-2"></i>info@neoinfra.com</p>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="mb-4 text-white">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{{ url_for('main.index') }}" class="text-white-50">Home</a></li>
+                        <li class="mb-2"><a href="{{ url_for('projects.project_list') }}" class="text-white-50">Projects</a></li>
+                        <li class="mb-2"><a href="{{ url_for('main.services') }}" class="text-white-50">Services</a></li>
+                        <li class="mb-2"><a href="{{ url_for('main.about') }}" class="text-white-50">About Us</a></li>
+                        <li class="mb-2"><a href="{{ url_for('contact.contact') }}" class="text-white-50">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4 text-white">Our Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50">Residential Construction</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Commercial Projects</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Industrial Construction</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Project Planning</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50">Interior Design</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4 text-white">Connect With Us</h5>
+                    <div class="social-links mb-4">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p class="mb-0">Stay updated with our latest projects and news</p>
+                </div>
+            </div>
+            <hr class="mt-4 mb-3 border-white-50">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-white-50">&copy; {{ current_year }} Neo Infraservices. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 me-3">Privacy Policy</a>
+                    <a href="#" class="text-white-50">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/hero-slider.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/hero-animations.js') }}"></script>
+    
+    <!-- Chat Widget JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Contact options functionality
+            const contactOptionsBtn = document.getElementById('contactOptionsBtn');
+            const contactOptionsMenu = document.getElementById('contactOptionsMenu');
+            
+            contactOptionsBtn.addEventListener('click', function() {
+                contactOptionsMenu.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.floating-contact') || 
+                    (event.target.closest('.contact-option') && !event.target.closest('.form-option'))) {
+                    contactOptionsMenu.classList.remove('active');
+                }
+            });
+            
+            // Chat widget functionality
+            const chatToggleBtn = document.getElementById('chatToggleBtn');
+            const chatWidget = document.getElementById('chatWidget');
+            const chatCloseBtn = document.getElementById('chatCloseBtn');
+            const userMessageInput = document.getElementById('userMessageInput');
+            const sendMessageBtn = document.getElementById('sendMessageBtn');
+            const chatMessages = document.getElementById('chatMessages');
+            
+            // Toggle chat widget
+            chatToggleBtn.addEventListener('click', function() {
+                chatWidget.style.display = chatWidget.style.display === 'none' || chatWidget.style.display === '' ? 'flex' : 'none';
+                if (chatWidget.style.display === 'flex') {
+                    userMessageInput.focus();
+                }
+            });
+            
+            // Close chat widget
+            chatCloseBtn.addEventListener('click', function() {
+                chatWidget.style.display = 'none';
+            });
+            
+            // Send message when Enter key is pressed
+            userMessageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // Send message when send button is clicked
+            sendMessageBtn.addEventListener('click', sendMessage);
+            
+            // Function to send message
+            function sendMessage() {
+                const message = userMessageInput.value.trim();
+                if (message === '') return;
+                
+                // Display user message
+                appendMessage(message, 'user');
+                
+                // Clear input
+                userMessageInput.value = '';
+                
+                // Add loading indicator
+                const loadingMessage = appendMessage('Thinking...', 'bot');
+                
+                // Send message to server
+                console.log('Sending message to server:', message);
+                fetch('/chatbot/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message }),
+                })
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    if (!response.ok) {
+                        return response.json().then(errData => {
+                            throw new Error(errData.error || `HTTP error! Status: ${response.status}`);
+                        }).catch(jsonErr => {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response data:', data);
+                    // Remove loading indicator
+                    loadingMessage.remove();
+                    
+                    // Display bot response
+                    if (data.error) {
+                        console.error('API Error:', data.error);
+                        appendMessage('Sorry, I encountered a technical issue. Please try again in a few moments.', 'bot');
+                    } else {
+                        appendMessage(data.response, 'bot');
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch Error:', error.message);
+                    
+                    // Remove loading indicator
+                    loadingMessage.remove();
+                    
+                    // Display error message
+                    appendMessage('Sorry, there was a problem communicating with the server. Please try again later.', 'bot');
+                    
+                    // Try the test endpoint to see if the server is responding
+                    fetch('/chatbot/test')
+                        .then(response => response.json())
+                        .then(data => console.log('Test endpoint response:', data))
+                        .catch(error => console.error('Test endpoint error:', error));
+                });
+            }
+            
+            // Function to append message to chat
+            function appendMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+                
+                const messageContent = document.createElement('div');
+                messageContent.classList.add('message-content');
+                messageContent.textContent = text;
+                
+                messageDiv.appendChild(messageContent);
+                chatMessages.appendChild(messageDiv);
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                return messageDiv;
+            }
+        });
+    </script>
+    
+    <!-- Project Calculator JavaScript -->
+    {% if request.endpoint == 'main.index' %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const calculatorForm = document.getElementById('projectCalculatorForm');
+        const estimateResult = document.getElementById('estimateResult');
+        
+        if (calculatorForm) {
+            calculatorForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const projectType = document.getElementById('projectType').value;
+                const projectSize = parseFloat(document.getElementById('projectSize').value);
+                const projectComplexity = document.getElementById('projectComplexity').value;
+                const projectTimeline = parseFloat(document.getElementById('projectTimeline').value);
+                
+                // Simple calculation logic (can be enhanced)
+                let baseRate = 0;
+                
+                // Base rate by project type
+                switch(projectType) {
+                    case 'residential':
+                        baseRate = 1200;
+                        break;
+                    case 'commercial':
+                        baseRate = 1500;
+                        break;
+                    case 'industrial':
+                        baseRate = 1800;
+                        break;
+                    case 'infrastructure':
+                        baseRate = 2000;
+                        break;
+                    default:
+                        baseRate = 1200;
+                }
+                
+                // Complexity multiplier
+                let complexityMultiplier = 1;
+                switch(projectComplexity) {
+                    case 'simple':
+                        complexityMultiplier = 1;
+                        break;
+                    case 'moderate':
+                        complexityMultiplier = 1.3;
+                        break;
+                    case 'complex':
+                        complexityMultiplier = 1.6;
+                        break;
+                    case 'very-complex':
+                        complexityMultiplier = 2;
+                        break;
+                    default:
+                        complexityMultiplier = 1;
+                }
+                
+                // Calculate estimated cost
+                const estimatedCost = baseRate * projectSize * complexityMultiplier;
+                
+                // Calculate estimated timeline (in months)
+                const estimatedTimeline = Math.ceil(projectSize / 1000) * 2;
+                
+                // Display results
+                document.getElementById('estimatedCost').textContent = '₹' + estimatedCost.toLocaleString('en-IN');
+                document.getElementById('estimatedTimeline').textContent = estimatedTimeline + ' months';
+                
+                // Show result
+                estimateResult.classList.remove('d-none');
+                
+                // Scroll to result
+                estimateResult.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+    });
+    </script>
+    {% endif %}
+    
+    <style>
+    {% if request.endpoint == 'main.index' %}
+    /* Project Calculator Styles */
+    #project-calculator {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Add any other styles needed for the project calculator */
+    {% endif %}
+    </style>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 

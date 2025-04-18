@@ -1,0 +1,23 @@
+Welcome to Construction Company!
+
+Hello {{ user.username }},
+
+Thank you for creating an account with Construction Company. We're excited to have you on board!
+
+With your new account, you can:
+- View and track your projects
+- Submit new project inquiries
+- Get cost estimates
+- Communicate with our team
+
+To get started, visit your dashboard at:
+{{ url_for('main.dashboard', _external=True) }}
+
+If you have any questions or need assistance, don't hesitate to contact our support team.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

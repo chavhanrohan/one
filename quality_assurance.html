@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .qa-details {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .qa-metrics {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        .qa-findings {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+        }
+        .qa-recommendations {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+        }
+        .qa-item {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .qa-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .status-passed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status-warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .status-failed {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #28a745;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='images/logo.png', _external=True) }}" alt="Construction Company Logo" class="logo">
+        <h1>Quality Assurance Report</h1>
+    </div>
+
+    <div class="content">
+        <p>Hello {{ user.username }},</p>
+
+        <p>This is the quality assurance report for your project. Please review the findings and recommendations.</p>
+
+        <div class="qa-details">
+            <p><strong>Project Title:</strong> {{ project.title }}</p>
+            <p><strong>Report Date:</strong> {{ report.date.strftime('%B %d, %Y') }}</p>
+            <p><strong>Overall Quality Score:</strong> {{ report.quality_score }}/100</p>
+            <p><strong>Quality Progress:</strong></p>
+            <div class="progress-bar">
+                <div class="progress" style="width: {{ report.quality_score }}%;"></div>
+            </div>
+        </div>
+
+        <div class="qa-metrics">
+            <h3>Quality Metrics:</h3>
+            {% for metric in report.metrics %}
+            <div class="qa-item">
+                <p><strong>{{ metric.name }}</strong></p>
+                <p>Score: {{ metric.score }}/100</p>
+                <p>Status: <span class="qa-status status-{{ metric.status }}">{{ metric.status|title }}</span></p>
+                {% if metric.notes %}
+                <p>Notes: {{ metric.notes }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="qa-findings">
+            <h3>Key Findings:</h3>
+            {% for finding in report.findings %}
+            <div class="qa-item">
+                <p><strong>{{ finding.title }}</strong></p>
+                <p>Category: {{ finding.category }}</p>
+                <p>Severity: {{ finding.severity|title }}</p>
+                <p>Description: {{ finding.description }}</p>
+                {% if finding.recommendation %}
+                <p>Recommendation: {{ finding.recommendation }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="qa-recommendations">
+            <h3>Recommendations:</h3>
+            <ul>
+                {% for recommendation in report.recommendations %}
+                <li>{{ recommendation }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <p>To view the complete quality assurance report and track improvements, click the button below:</p>
+
+        <div style="text-align: center;">
+            <a href="{{ url_for('projects.qa_details', project_id=project.id, _external=True) }}" class="button">View QA Report</a>
+        </div>
+
+        <p>If you have any questions about the quality assurance findings or need clarification on recommendations, please contact our quality control team.</p>
+
+        <p>Best regards,<br>The Construction Company Team</p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated quality assurance report. Please do not reply to this email.</p>
+        <p>&copy; {{ year }} Construction Company. All rights reserved.</p>
+    </div>
+</body>
+</html> 

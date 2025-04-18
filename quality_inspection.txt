@@ -1,0 +1,50 @@
+Quality Inspection Report
+
+Hello {{ user.username }},
+
+A quality inspection has been completed for your project. Here are the results:
+
+Project Details:
+Project Title: {{ project.title }}
+Inspection Date: {{ inspection.date.strftime('%B %d, %Y') }}
+Inspection Type: {{ inspection.type }}
+Overall Status: {{ inspection.overall_status|title }}
+
+Inspection Items:
+{% for item in inspection.items %}
+[{{ item.status|title }}] {{ item.name }}
+{% if item.notes %}
+Notes: {{ item.notes }}
+{% endif %}
+{% if item.photos %}
+Photos: {{ item.photos|length }} attached
+{% endif %}
+
+{% endfor %}
+
+{% if inspection.recommendations %}
+Recommendations:
+{% for rec in inspection.recommendations %}
+- {{ rec }}
+{% endfor %}
+{% endif %}
+
+Inspector Information:
+Inspector: {{ inspection.inspector_name }}
+Contact: {{ inspection.inspector_contact }}
+
+To view the complete inspection report and photos, visit:
+{{ url_for('projects.inspection_details', project_id=project.id, inspection_id=inspection.id, _external=True) }}
+
+{% if inspection.requires_action %}
+Action Required: Please review the recommendations and take necessary actions as specified in the report.
+{% endif %}
+
+If you have any questions about the inspection results, please don't hesitate to contact our quality control team.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

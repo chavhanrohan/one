@@ -1,0 +1,51 @@
+Project Schedule Update
+
+Hello {{ user.username }},
+
+This is an update regarding your project's schedule. Please review the changes and upcoming milestones.
+
+Project Details:
+Project Title: {{ project.title }}
+Update Date: {{ update.date.strftime('%B %d, %Y') }}
+Current Status: {{ project.status|title }}
+Overall Progress: {{ project.progress }}% Complete
+
+Timeline Updates:
+Original Completion Date: {{ project.original_completion_date.strftime('%B %d, %Y') }}
+Current Completion Date: {{ project.current_completion_date.strftime('%B %d, %Y') }}
+{% if project.completion_date_changed %}
+Note: The completion date has been adjusted based on current progress and conditions.
+{% endif %}
+
+Milestone Updates:
+{% for milestone in project.milestones %}
+{{ milestone.name }}
+Status: {{ milestone.status|title }}
+Due Date: {{ milestone.due_date.strftime('%B %d, %Y') }}
+{% if milestone.completion_date %}
+Completed: {{ milestone.completion_date.strftime('%B %d, %Y') }}
+{% endif %}
+{% if milestone.notes %}
+Notes: {{ milestone.notes }}
+{% endif %}
+
+{% endfor %}
+
+{% if project.schedule_impacts %}
+Schedule Impacts:
+{% for impact in project.schedule_impacts %}
+- {{ impact }}
+{% endfor %}
+{% endif %}
+
+To view detailed schedule information and track progress, visit:
+{{ url_for('projects.schedule_details', project_id=project.id, _external=True) }}
+
+If you have any questions about the schedule updates or would like to discuss specific milestones, please contact our project manager.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated schedule update. Please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

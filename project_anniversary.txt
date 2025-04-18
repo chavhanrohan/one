@@ -1,0 +1,37 @@
+Happy Project Anniversary!
+
+Hello {{ user.username }},
+
+We're excited to celebrate the {{ project.anniversary_years }}-year anniversary of your project! This milestone is a testament to the quality and durability of our construction work.
+
+Project Details:
+Project Title: {{ project.title }}
+Completion Date: {{ project.completion_date.strftime('%B %d, %Y') }}
+Project Type: {{ project.type|title }}
+Location: {{ project.location }}
+
+Project Statistics:
+Years Completed: {{ project.anniversary_years }}
+Maintenance Visits: {{ project.maintenance_count }}
+
+Project Highlights:
+{% for highlight in project.highlights %}
+- {{ highlight }}
+{% endfor %}
+
+{% if project.photos %}
+Project Photos:
+We've included some photos of your project in the HTML version of this email.
+{% endif %}
+
+To view more project details and photos, visit:
+{{ url_for('projects.project_details', project_id=project.id, _external=True) }}
+
+We're proud to have been part of your project and look forward to continuing to serve you in the future. If you have any upcoming construction needs, please don't hesitate to contact us.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

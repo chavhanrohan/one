@@ -1,0 +1,35 @@
+Refer a Friend Program
+
+Hello {{ user.username }},
+
+Thank you for choosing Construction Company for your project. We value your trust and would like to invite you to participate in our Refer a Friend program.
+
+Your Project:
+Project Title: {{ project.title }}
+Completion Date: {{ project.completion_date.strftime('%B %d, %Y') }}
+
+Referral Benefits:
+- Receive a $500 credit for your next project
+- Your friend gets a 5% discount on their project
+- Priority scheduling for both parties
+- Exclusive access to special promotions
+
+How It Works:
+1. Share your unique referral code with friends
+2. Friends mention your code when contacting us
+3. Both you and your friend receive benefits
+4. No limit to the number of referrals
+
+Your unique referral code: {{ user.referral_code }}
+
+To submit a referral, visit:
+{{ url_for('projects.submit_referral', project_id=project.id, _external=True) }}
+
+Share this code with your friends, or use the form on our website to submit a referral directly. We'll take care of the rest!
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

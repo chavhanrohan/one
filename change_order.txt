@@ -1,0 +1,46 @@
+Project Change Order
+
+Hello {{ user.username }},
+
+A change order has been submitted for your project. Please review the details below:
+
+Project Details:
+Project Title: {{ project.title }}
+Change Order Number: {{ change_order.number }}
+Date Submitted: {{ change_order.date.strftime('%B %d, %Y') }}
+Status: {{ change_order.status|title }}
+
+Change Description:
+{{ change_order.description }}
+
+Reason for Change:
+{{ change_order.reason }}
+
+Cost Impact:
+Additional Materials: ${{ "%.2f"|format(change_order.material_cost) }}
+Additional Labor: ${{ "%.2f"|format(change_order.labor_cost) }}
+Additional Overhead: ${{ "%.2f"|format(change_order.overhead_cost) }}
+Total Cost Impact: ${{ "%.2f"|format(change_order.total_cost) }}
+
+Schedule Impact:
+Additional Time: {{ change_order.schedule_impact }} days
+New Completion Date: {{ change_order.new_completion_date.strftime('%B %d, %Y') }}
+
+{% if change_order.attachments %}
+Supporting Documents:
+{% for attachment in change_order.attachments %}
+- {{ attachment.name }} ({{ attachment.size }})
+{% endfor %}
+{% endif %}
+
+To review and approve/reject this change order, visit:
+{{ url_for('projects.change_order_details', project_id=project.id, change_order_id=change_order.id, _external=True) }}
+
+Please review this change order within 5 business days. If you have any questions or need additional information, please contact our project manager.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

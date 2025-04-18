@@ -1,0 +1,48 @@
+URGENT: Emergency Notification
+
+Hello {{ user.username }},
+
+This is an emergency notification regarding your project. We have detected a situation that requires immediate attention.
+
+Emergency Details:
+Time: {{ emergency.time.strftime('%B %d, %Y %H:%M') }}
+Project Title: {{ project.title }}
+Location: {{ project.location }}
+Emergency Type: {{ emergency.type }}
+Severity Level: {{ emergency.severity }}
+Status: {{ emergency.status }}
+
+Emergency Description:
+{{ emergency.description }}
+
+{% if emergency.affected_areas %}
+Affected Areas:
+{% for area in emergency.affected_areas %}
+- {{ area }}
+{% endfor %}
+{% endif %}
+
+Immediate Actions Required:
+{% for action in emergency.actions %}
+{{ loop.index }}. {{ action }}
+{% endfor %}
+
+Emergency Contacts:
+Emergency Hotline: {{ emergency.hotline }}
+Project Manager: {{ emergency.project_manager }}
+Safety Officer: {{ emergency.safety_officer }}
+Local Authorities: {{ emergency.local_authorities }}
+
+To view real-time updates and additional information, visit:
+{{ url_for('projects.emergency_updates', project_id=project.id, _external=True) }}
+
+IMPORTANT: Please take this notification seriously and follow all safety instructions provided.
+
+We will continue to monitor the situation and provide updates as they become available.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated emergency notification. Please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

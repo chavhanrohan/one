@@ -1,0 +1,38 @@
+Project Feedback Request
+
+Hello {{ user.username }},
+
+We value your feedback and would like to hear about your experience with our construction services. Your input helps us improve and provide better service to our clients.
+
+Project Details:
+Project Title: {{ project.title }}
+Completion Date: {{ project.completion_date.strftime('%B %d, %Y') }}
+Project Type: {{ project.type|title }}
+
+Share Your Experience:
+Please take a moment to rate your experience with:
+1 - Poor
+2 - Fair
+3 - Good
+4 - Very Good
+5 - Excellent
+
+Additional Comments:
+We would appreciate your feedback on:
+- Overall project quality
+- Communication with our team
+- Timeline adherence
+- Budget management
+- Customer service
+
+To provide your feedback, visit:
+{{ url_for('projects.feedback_form', project_id=project.id, _external=True) }}
+
+Your feedback is important to us and will help us maintain our high standards of service. Thank you for your time!
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

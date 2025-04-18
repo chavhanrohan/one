@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .referral-details {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .referral-benefits {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        .referral-program {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+        }
+        .referral-form {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .form-field {
+            margin: 10px 0;
+        }
+        .form-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-field input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='images/logo.png', _external=True) }}" alt="Construction Company Logo" class="logo">
+        <h1>Refer a Friend Program</h1>
+    </div>
+
+    <div class="content">
+        <p>Hello {{ user.username }},</p>
+
+        <p>Thank you for choosing Construction Company for your project. We value your trust and would like to invite you to participate in our Refer a Friend program.</p>
+
+        <div class="referral-details">
+            <p><strong>Your Project:</strong> {{ project.title }}</p>
+            <p><strong>Completion Date:</strong> {{ project.completion_date.strftime('%B %d, %Y') }}</p>
+        </div>
+
+        <div class="referral-benefits">
+            <h3>Referral Benefits:</h3>
+            <ul>
+                <li>Receive a $500 credit for your next project</li>
+                <li>Your friend gets a 5% discount on their project</li>
+                <li>Priority scheduling for both parties</li>
+                <li>Exclusive access to special promotions</li>
+            </ul>
+        </div>
+
+        <div class="referral-program">
+            <h3>How It Works:</h3>
+            <ol>
+                <li>Share your unique referral code with friends</li>
+                <li>Friends mention your code when contacting us</li>
+                <li>Both you and your friend receive benefits</li>
+                <li>No limit to the number of referrals</li>
+            </ol>
+        </div>
+
+        <div class="referral-form">
+            <h3>Refer a Friend:</h3>
+            <form action="{{ url_for('projects.submit_referral', project_id=project.id, _external=True) }}" method="POST">
+                <div class="form-field">
+                    <label for="friend_name">Friend's Name:</label>
+                    <input type="text" id="friend_name" name="friend_name" required>
+                </div>
+                <div class="form-field">
+                    <label for="friend_email">Friend's Email:</label>
+                    <input type="email" id="friend_email" name="friend_email" required>
+                </div>
+                <div class="form-field">
+                    <label for="friend_phone">Friend's Phone:</label>
+                    <input type="tel" id="friend_phone" name="friend_phone" required>
+                </div>
+                <div class="form-field">
+                    <label for="project_type">Project Type:</label>
+                    <select id="project_type" name="project_type" required>
+                        <option value="">Select a project type</option>
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="industrial">Industrial</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="message">Personal Message (Optional):</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                <button type="submit" class="button">Submit Referral</button>
+            </form>
+        </div>
+
+        <p>Your unique referral code: <strong>{{ user.referral_code }}</strong></p>
+
+        <p>Share this code with your friends, or use the form above to submit a referral directly. We'll take care of the rest!</p>
+
+        <p>Best regards,<br>The Construction Company Team</p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated message, please do not reply to this email.</p>
+        <p>&copy; {{ year }} Construction Company. All rights reserved.</p>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .budget-details {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .budget-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .budget-item:last-child {
+            border-bottom: none;
+        }
+        .budget-total {
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #dee2e6;
+        }
+        .change-positive {
+            color: #28a745;
+        }
+        .change-negative {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='images/logo.png', _external=True) }}" alt="Construction Company Logo" class="logo">
+        <h1>Project Budget Update</h1>
+    </div>
+
+    <div class="content">
+        <p>Hello {{ user.username }},</p>
+
+        <p>This is an update regarding the budget for your project. We want to keep you informed about any changes in the project's financial status.</p>
+
+        <div class="budget-details">
+            <p><strong>Project Title:</strong> {{ project.title }}</p>
+            
+            <div class="budget-item">
+                <span>Original Budget:</span>
+                <span>₹{{ "%.2f"|format(project.original_budget) }}</span>
+            </div>
+            
+            <div class="budget-item">
+                <span>Current Budget:</span>
+                <span>₹{{ "%.2f"|format(project.current_budget) }}</span>
+            </div>
+            
+            <div class="budget-item">
+                <span>Amount Spent:</span>
+                <span>₹{{ "%.2f"|format(project.amount_spent) }}</span>
+            </div>
+            
+            <div class="budget-item">
+                <span>Remaining Budget:</span>
+                <span>₹{{ "%.2f"|format(project.remaining_budget) }}</span>
+            </div>
+
+            <div class="budget-total">
+                <div class="budget-item">
+                    <span>Budget Variance:</span>
+                    <span class="{% if project.budget_variance > 0 %}change-positive{% else %}change-negative{% endif %}">
+                        ₹{{ "%.2f"|format(project.budget_variance) }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        {% if project.budget_changes %}
+        <p><strong>Recent Budget Changes:</strong></p>
+        <ul>
+            {% for change in project.budget_changes %}
+            <li>{{ change }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if project.budget_notes %}
+        <p><strong>Additional Notes:</strong></p>
+        <p>{{ project.budget_notes }}</p>
+        {% endif %}
+
+        <p>To view detailed budget information or if you have any questions, click the button below:</p>
+
+        <div style="text-align: center;">
+            <a href="{{ url_for('projects.budget_details', project_id=project.id, _external=True) }}" class="button">View Budget Details</a>
+        </div>
+
+        <p>If you would like to discuss the budget in detail, please don't hesitate to contact our project manager.</p>
+
+        <p>Best regards,<br>The Construction Company Team</p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated message, please do not reply to this email.</p>
+        <p>&copy; {{ year }} Construction Company. All rights reserved.</p>
+    </div>
+</body>
+</html> 

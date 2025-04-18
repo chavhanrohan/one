@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .warranty-details {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .warranty-item {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .warranty-coverage {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        .warranty-exclusions {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #dc3545;
+        }
+        .contact-info {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='images/logo.png', _external=True) }}" alt="Construction Company Logo" class="logo">
+        <h1>Project Warranty Information</h1>
+    </div>
+
+    <div class="content">
+        <p>Hello {{ user.username }},</p>
+
+        <p>This email contains important information about your project's warranty coverage. Please review the details below:</p>
+
+        <div class="warranty-details">
+            <p><strong>Project Title:</strong> {{ project.title }}</p>
+            <p><strong>Warranty Start Date:</strong> {{ warranty.start_date.strftime('%B %d, %Y') }}</p>
+            <p><strong>Warranty End Date:</strong> {{ warranty.end_date.strftime('%B %d, %Y') }}</p>
+            <p><strong>Warranty Type:</strong> {{ warranty.type }}</p>
+        </div>
+
+        <div class="warranty-coverage">
+            <h3>What's Covered:</h3>
+            <ul>
+                {% for item in warranty.coverage %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="warranty-exclusions">
+            <h3>What's Not Covered:</h3>
+            <ul>
+                {% for item in warranty.exclusions %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="warranty-item">
+            <h3>Maintenance Requirements:</h3>
+            <p>To maintain your warranty coverage, please ensure:</p>
+            <ul>
+                {% for requirement in warranty.maintenance_requirements %}
+                <li>{{ requirement }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="contact-info">
+            <h3>Warranty Claims:</h3>
+            <p>If you need to file a warranty claim, please contact us at:</p>
+            <p><strong>Phone:</strong> {{ warranty.claim_phone }}</p>
+            <p><strong>Email:</strong> {{ warranty.claim_email }}</p>
+            <p><strong>Hours:</strong> {{ warranty.claim_hours }}</p>
+        </div>
+
+        <p>To view your complete warranty documentation and file claims, click the button below:</p>
+
+        <div style="text-align: center;">
+            <a href="{{ url_for('projects.warranty_details', project_id=project.id, _external=True) }}" class="button">View Warranty Details</a>
+        </div>
+
+        <p>Please keep this information for your records. If you have any questions about your warranty coverage, don't hesitate to contact our warranty department.</p>
+
+        <p>Best regards,<br>The Construction Company Team</p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated message, please do not reply to this email.</p>
+        <p>&copy; {{ year }} Construction Company. All rights reserved.</p>
+    </div>
+</body>
+</html> 

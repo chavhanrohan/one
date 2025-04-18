@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .anniversary-details {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .project-highlights {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .project-photos {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .photo-item {
+            position: relative;
+            padding-bottom: 75%;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        .photo-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='images/logo.png', _external=True) }}" alt="Construction Company Logo" class="logo">
+        <h1>Happy Project Anniversary!</h1>
+    </div>
+
+    <div class="content">
+        <p>Hello {{ user.username }},</p>
+
+        <p>We're excited to celebrate the {{ project.anniversary_years }}-year anniversary of your project! This milestone is a testament to the quality and durability of our construction work.</p>
+
+        <div class="anniversary-details">
+            <p><strong>Project Title:</strong> {{ project.title }}</p>
+            <p><strong>Completion Date:</strong> {{ project.completion_date.strftime('%B %d, %Y') }}</p>
+            <p><strong>Project Type:</strong> {{ project.type|title }}</p>
+            <p><strong>Location:</strong> {{ project.location }}</p>
+        </div>
+
+        <div class="project-stats">
+            <div class="stat-item">
+                <div class="stat-value">{{ project.anniversary_years }}</div>
+                <div>Years Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">{{ project.maintenance_count }}</div>
+                <div>Maintenance Visits</div>
+            </div>
+        </div>
+
+        <div class="project-highlights">
+            <h3>Project Highlights:</h3>
+            <ul>
+                {% for highlight in project.highlights %}
+                <li>{{ highlight }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% if project.photos %}
+        <div class="project-photos">
+            <h3>Project Photos:</h3>
+            <div class="photo-grid">
+                {% for photo in project.photos[:4] %}
+                <div class="photo-item">
+                    <img src="{{ photo.url }}" alt="{{ photo.description }}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <p>To view more project details and photos, click the button below:</p>
+
+        <div style="text-align: center;">
+            <a href="{{ url_for('projects.project_details', project_id=project.id, _external=True) }}" class="button">View Project Details</a>
+        </div>
+
+        <p>We're proud to have been part of your project and look forward to continuing to serve you in the future. If you have any upcoming construction needs, please don't hesitate to contact us.</p>
+
+        <p>Best regards,<br>The Construction Company Team</p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated message, please do not reply to this email.</p>
+        <p>&copy; {{ year }} Construction Company. All rights reserved.</p>
+    </div>
+</body>
+</html> 

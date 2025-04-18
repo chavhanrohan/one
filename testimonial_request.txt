@@ -1,0 +1,37 @@
+Share Your Experience
+
+Hello {{ user.username }},
+
+We hope you're enjoying your completed project! We would love to hear about your experience with Construction Company.
+
+Project Details:
+Project Title: {{ project.title }}
+Completion Date: {{ project.completion_date.strftime('%B %d, %Y') }}
+Project Type: {{ project.type|title }}
+
+Guidelines for Your Testimonial:
+- Be specific about your experience
+- Mention key aspects of the project
+- Share any challenges and how they were resolved
+- Include your overall satisfaction level
+- Feel free to include photos of the completed project
+
+Example Topics to Cover:
+- Project planning and communication
+- Quality of workmanship
+- Timeline adherence
+- Budget management
+- Team professionalism
+- Final results and satisfaction
+
+To submit your testimonial, visit:
+{{ url_for('projects.submit_testimonial', project_id=project.id, _external=True) }}
+
+Your feedback helps us improve our services and helps potential clients make informed decisions. Thank you for sharing your experience!
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

@@ -1,0 +1,55 @@
+Quality Assurance Report
+========================
+
+Hello {{ user.username }},
+
+This is the quality assurance report for your project. Please review the findings and recommendations.
+
+Project Details:
+---------------
+Project Title: {{ project.title }}
+Report Date: {{ report.date.strftime('%B %d, %Y') }}
+Overall Quality Score: {{ report.quality_score }}/100
+
+Quality Metrics:
+---------------
+{% for metric in report.metrics %}
+{{ metric.name }}
+Score: {{ metric.score }}/100
+Status: {{ metric.status|title }}
+{% if metric.notes %}
+Notes: {{ metric.notes }}
+{% endif %}
+
+{% endfor %}
+
+Key Findings:
+------------
+{% for finding in report.findings %}
+{{ finding.title }}
+Category: {{ finding.category }}
+Severity: {{ finding.severity|title }}
+Description: {{ finding.description }}
+{% if finding.recommendation %}
+Recommendation: {{ finding.recommendation }}
+{% endif %}
+
+{% endfor %}
+
+Recommendations:
+---------------
+{% for recommendation in report.recommendations %}
+* {{ recommendation }}
+{% endfor %}
+
+To view the complete quality assurance report and track improvements, visit:
+{{ url_for('projects.qa_details', project_id=project.id, _external=True) }}
+
+If you have any questions about the quality assurance findings or need clarification on recommendations, please contact our quality control team.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated quality assurance report. Please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

@@ -1,0 +1,58 @@
+Project Safety Report
+
+Hello {{ user.username }},
+
+This is the safety report for your project. We are committed to maintaining the highest safety standards on all our construction sites.
+
+Project Details:
+Project Title: {{ project.title }}
+Report Date: {{ report.date.strftime('%B %d, %Y') }}
+Report Period: {{ report.period_start.strftime('%B %d, %Y') }} to {{ report.period_end.strftime('%B %d, %Y') }}
+
+Safety Statistics:
+Days Without Incident: {{ report.days_without_incident }}
+Safety Score: {{ report.safety_score }}
+
+Safety Observations:
+{% for observation in report.observations %}
+[{{ observation.severity|title }}] {{ observation.title }}
+Location: {{ observation.location }}
+{% if observation.description %}
+Description: {{ observation.description }}
+{% endif %}
+{% if observation.action_taken %}
+Action Taken: {{ observation.action_taken }}
+{% endif %}
+{% if observation.photos %}
+Photos: {{ observation.photos|length }} attached
+{% endif %}
+
+{% endfor %}
+
+{% if report.recommendations %}
+Safety Recommendations:
+{% for rec in report.recommendations %}
+- {{ rec }}
+{% endfor %}
+{% endif %}
+
+Safety Officer Information:
+Safety Officer: {{ report.safety_officer }}
+Contact: {{ report.safety_officer_contact }}
+Emergency Contact: {{ report.emergency_contact }}
+
+To view the complete safety report and photos, visit:
+{{ url_for('projects.safety_report_details', project_id=project.id, report_id=report.id, _external=True) }}
+
+{% if report.requires_immediate_action %}
+IMMEDIATE ACTION REQUIRED: Please review the critical safety observations and take necessary actions as specified in the report.
+{% endif %}
+
+If you have any questions about the safety report or need to report a safety concern, please contact our safety team immediately.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

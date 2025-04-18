@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .resource-details {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .resource-changes {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        .resource-allocation {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+        }
+        .resource-status {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+        }
+        .resource-item {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .resource-status-indicator {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .status-available {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status-limited {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .status-depleted {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #28a745;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='images/logo.png', _external=True) }}" alt="Construction Company Logo" class="logo">
+        <h1>Project Resource Update</h1>
+    </div>
+
+    <div class="content">
+        <p>Hello {{ user.username }},</p>
+
+        <p>This is an update regarding the resources allocated to your project. Please review the changes and current status.</p>
+
+        <div class="resource-details">
+            <p><strong>Project Title:</strong> {{ project.title }}</p>
+            <p><strong>Update Date:</strong> {{ update.date.strftime('%B %d, %Y') }}</p>
+            <p><strong>Resource Utilization:</strong></p>
+            <div class="progress-bar">
+                <div class="progress" style="width: {{ project.resource_utilization }}%;"></div>
+            </div>
+            <p style="text-align: center;">{{ project.resource_utilization }}% Utilization</p>
+        </div>
+
+        <div class="resource-changes">
+            <h3>Resource Changes:</h3>
+            {% for change in project.resource_changes %}
+            <div class="resource-item">
+                <p><strong>{{ change.type }}</strong></p>
+                <p>Previous Amount: {{ change.previous_amount }}</p>
+                <p>New Amount: {{ change.new_amount }}</p>
+                <p>Change: {{ change.difference }}</p>
+                {% if change.reason %}
+                <p>Reason: {{ change.reason }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="resource-allocation">
+            <h3>Current Resource Allocation:</h3>
+            {% for resource in project.resources %}
+            <div class="resource-item">
+                <p><strong>{{ resource.name }}</strong></p>
+                <p>Allocated: {{ resource.allocated }}</p>
+                <p>Used: {{ resource.used }}</p>
+                <p>Remaining: {{ resource.remaining }}</p>
+                <p>Status: <span class="resource-status-indicator status-{{ resource.status }}">{{ resource.status|title }}</span></p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="resource-status">
+            <h3>Resource Status Summary:</h3>
+            <ul>
+                {% for status in project.resource_status %}
+                <li>{{ status }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <p>To view detailed resource information and track utilization, click the button below:</p>
+
+        <div style="text-align: center;">
+            <a href="{{ url_for('projects.resource_details', project_id=project.id, _external=True) }}" class="button">View Resource Details</a>
+        </div>
+
+        <p>If you have any questions about the resource updates or need to request additional resources, please contact our project manager.</p>
+
+        <p>Best regards,<br>The Construction Company Team</p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated resource update. Please do not reply to this email.</p>
+        <p>&copy; {{ year }} Construction Company. All rights reserved.</p>
+    </div>
+</body>
+</html> 

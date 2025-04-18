@@ -1,0 +1,1170 @@
+{% extends "base.html" %}
+
+{% block title %}Our Clients - Neo Infrastructure{% endblock %}
+
+{% block content %}
+<!-- Clients Hero Section -->
+<section class="clients-hero">
+    <div class="hero-bg-image"></div>
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <div class="row min-vh-60 align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <span class="hero-badge animate-up">Our Partners</span>
+                    <h1 class="display-4 fw-bold mb-4 animate-up delay-1 text-white">Our Valued Clients</h1>
+                    <p class="lead mb-4 animate-up delay-2 text-white-75">We are proud to partner with leading organizations who trust us to deliver excellence in infrastructure development.</p>
+                    <div class="hero-buttons animate-up delay-3">
+                        <a href="#clients-section" class="btn btn-primary btn-lg">
+                            <span>View Our Clients</span>
+                            <i class="fas fa-building ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="hero-image-container animate-up delay-2">
+                    <div class="hero-image">
+                        <img src="{{ url_for('static', filename='images/clients-hero.jpg') }}" alt="Our Clients" class="img-fluid rounded-3">
+                        <div class="colorful-overlay"></div>
+                    </div>
+                    <div class="hero-image-overlay"></div>
+                    <div class="hero-stats">
+                        <div class="hexagon-stats-container">
+                            <div class="stat-hexagon">
+                                <div class="stat-content">
+                                    <div class="stat-number counting" data-count="150">150</div>
+                                    <div class="stat-label">Happy Clients</div>
+                                    <div class="hexagon-icon">
+                                        <i class="fas fa-handshake"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-hexagon main-hexagon projects-hexagon">
+                                <div class="stat-content">
+                                    <div class="stat-number counting projects-number" data-count="200">200</div>
+                                    <div class="stat-label">Projects</div>
+                                    <div class="hexagon-icon">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-hexagon">
+                                <div class="stat-content">
+                                    <div class="stat-number counting" data-count="15">15</div>
+                                    <div class="stat-label">Cities</div>
+                                    <div class="hexagon-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Client Stats Section -->
+<section class="client-stats py-5">
+    <div class="container">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="stat-number counting" data-count="150">150</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="stat-number counting" data-count="200">200</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="stat-number counting" data-count="15">15</div>
+                <div class="stat-label">Cities Covered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="stat-number counting" data-count="25">25</div>
+                <div class="stat-label">Awards Received</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clients Grid -->
+<section class="clients-section py-5" id="clients-section">
+    <div class="clients-bg-pattern"></div>
+    <div class="container position-relative">
+        <div class="section-header text-center mb-5">
+            <div class="badge-container">
+                <span class="section-badge">Our Network</span>
+            </div>
+            <h2 class="section-title">Trusted By Industry Leaders</h2>
+            <p class="section-subtitle">We work with organizations that value quality, innovation, and reliability</p>
+            <div class="title-underline"></div>
+        </div>
+        
+        <div class="clients-filter mb-5">
+            <button class="filter-btn active" data-filter="all">
+                <span class="btn-text">All Clients</span>
+            </button>
+            <button class="filter-btn" data-filter="corporate">
+                <span class="btn-text">Corporate</span>
+            </button>
+            <button class="filter-btn" data-filter="government">
+                <span class="btn-text">Government</span>
+            </button>
+            <button class="filter-btn" data-filter="residential">
+                <span class="btn-text">Residential</span>
+            </button>
+        </div>
+        
+        <div class="row g-4 justify-content-center align-items-center clients-grid">
+            {# Loop through clients passed from the route #}
+            {# Assuming a list of client objects/dicts, each with name and logo_filename #}
+            {% set clients_placeholder = [
+                { 'name': 'Client Logo 1', 'logo_filename': 'logo-placeholder-1.png', 'category': 'corporate' },
+                { 'name': 'Client Logo 2', 'logo_filename': 'logo-placeholder-2.png', 'category': 'government' },
+                { 'name': 'Client Logo 3', 'logo_filename': 'logo-placeholder-3.png', 'category': 'residential' },
+                { 'name': 'Client Logo 4', 'logo_filename': 'logo-placeholder-4.png', 'category': 'corporate' },
+                { 'name': 'Client Logo 5', 'logo_filename': 'logo-placeholder-5.png', 'category': 'government' },
+                { 'name': 'Client Logo 6', 'logo_filename': 'logo-placeholder-6.png', 'category': 'residential' },
+                { 'name': 'Client Logo 7', 'logo_filename': 'logo-placeholder-7.png', 'category': 'corporate' },
+                { 'name': 'Client Logo 8', 'logo_filename': 'logo-placeholder-8.png', 'category': 'government' }
+            ] %}
+            {% for client in clients or clients_placeholder %} 
+            <div class="col-6 col-md-4 col-lg-3 client-item" data-category="{{ client.category }}">
+                <div class="client-logo-card">
+                    <div class="client-logo-wrapper">
+                    {# Check if logo_filename exists and construct path #}
+                    {% if client.logo_filename %}
+                        <img src="{{ url_for('static', filename='uploads/clients/' + client.logo_filename) }}" 
+                             alt="{{ client.name }}" class="client-logo img-fluid">
+                    {% else %}
+                        {# Fallback if no logo - display name or default #}
+                        <span class="client-name">{{ client.name }}</span>
+                    {% endif %}
+                    </div>
+                    <div class="client-overlay">
+                        <div class="client-info">
+                            <h4>{{ client.name }}</h4>
+                            <p>Trusted partner since 2020</p>
+                            <a href="#" class="btn btn-sm btn-outline-light">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <div class="no-clients-message">
+                    <div class="message-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Client information is currently unavailable</h3>
+                    <p>Please check back later to see our client portfolio.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="industry-circles">
+            <div class="industry-circle circle-1"></div>
+            <div class="industry-circle circle-2"></div>
+            <div class="industry-circle circle-3"></div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="cta-card">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="cta-title">Ready to Become Our Next Success Story?</h2>
+                    <p class="cta-text">Join our growing list of satisfied clients and experience the Neo Infrastructure difference.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="{{ url_for('contact.contact') }}" class="btn btn-primary btn-lg">
+                        <span>Get in Touch</span>
+                        <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Clients Hero Section */
+.clients-hero {
+    position: relative;
+    padding: 120px 0;
+    color: #333;
+    overflow: hidden;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("{{ url_for('static', filename='images/clients-hero.jpg') }}");
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    padding: 2.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.text-white-75 {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.5);
+}
+
+.hero-buttons {
+    margin-top: 2rem;
+}
+
+.hero-buttons .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.hero-buttons .btn-primary {
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    border: none;
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.5);
+    font-size: 1.1rem;
+    padding: 0.85rem 2rem;
+    transition: all 0.4s ease;
+}
+
+.hero-buttons .btn-primary:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(79, 172, 254, 0.6);
+}
+
+.hero-buttons .btn-primary i {
+    transition: transform 0.3s ease;
+}
+
+.hero-buttons .btn-primary:hover i {
+    transform: translateX(5px);
+}
+
+.hero-buttons .btn-outline-light {
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+}
+
+.hero-buttons .btn-outline-light:hover {
+    background: white;
+    color: #4facfe;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+}
+
+.hero-image-container {
+    position: relative;
+    z-index: 3;
+}
+
+.hero-image {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+    filter: saturate(1.3) contrast(1.1);
+}
+
+.hero-image:hover img {
+    transform: scale(1.05);
+}
+
+.colorful-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(255, 107, 107, 0.2) 0%, 
+        rgba(255, 142, 83, 0.2) 25%, 
+        rgba(79, 172, 254, 0.2) 50%, 
+        rgba(0, 242, 254, 0.2) 75%, 
+        rgba(128, 255, 165, 0.2) 100%);
+    mix-blend-mode: overlay;
+    z-index: 2;
+}
+
+.hero-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.3) 0%, rgba(0, 242, 254, 0.3) 100%);
+    z-index: 1;
+}
+
+.hero-stats {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 100%;
+}
+
+.hexagon-stats-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    position: relative;
+}
+
+.stat-hexagon {
+    width: 160px;
+    height: 160px;
+    background: white;
+    position: relative;
+    margin: 0 -15px;
+    transition: all 0.4s ease;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    transform: scale(0.85);
+}
+
+.stat-hexagon:before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    z-index: -1;
+}
+
+.stat-hexagon:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0.1) 100%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.main-hexagon {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    transform: scale(1);
+    z-index: 3;
+    box-shadow: 0 15px 35px rgba(79, 172, 254, 0.3);
+}
+
+.projects-hexagon {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+    box-shadow: 0 15px 35px rgba(255, 107, 107, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.projects-hexagon:before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+    top: -50%;
+    left: -50%;
+}
+
+.projects-number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    color: white;
+    position: relative;
+    z-index: 5;
+}
+
+.projects-number:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: white;
+    opacity: 0.8;
+}
+
+.projects-hexagon .stat-label {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-top: 0.75rem;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+}
+
+.projects-hexagon .stat-content {
+    padding: 0.75rem;
+}
+
+.projects-hexagon .hexagon-icon {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.projects-hexagon:hover {
+    box-shadow: 0 20px 40px rgba(255, 107, 107, 0.4);
+}
+
+.main-hexagon .stat-content {
+    color: white;
+}
+
+.main-hexagon .stat-number {
+    color: white;
+}
+
+.main-hexagon .hexagon-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.stat-hexagon:hover {
+    transform: translateY(-15px) scale(1);
+    z-index: 4;
+}
+
+.main-hexagon:hover {
+    transform: translateY(-15px) scale(1.1);
+}
+
+.stat-hexagon:hover:after {
+    opacity: 1;
+}
+
+.stat-content {
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #4facfe;
+    margin-bottom: 0.25rem;
+    line-height: 1;
+    position: relative;
+}
+
+.stat-number:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: currentColor;
+    opacity: 0.3;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+}
+
+.hexagon-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: rgba(79, 172, 254, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    color: #4facfe;
+    transform: translate(15%, -15%);
+    transition: all 0.3s ease;
+}
+
+.stat-hexagon:hover .hexagon-icon {
+    transform: translate(15%, -15%) rotate(360deg);
+}
+
+/* Client Stats Section */
+.client-stats {
+    background: white;
+    margin-top: -50px;
+    position: relative;
+    z-index: 2;
+}
+
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+    padding: 1rem;
+    position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #e0e0e0, transparent);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0.1) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #4facfe;
+    margin: 0 auto 1rem;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover .stat-icon {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    transform: rotate(10deg);
+}
+
+@media (max-width: 768px) {
+    .hexagon-stats-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .stat-hexagon {
+        margin: -30px 0;
+        transform: scale(0.75);
+    }
+    
+    .main-hexagon {
+        transform: scale(0.85);
+    }
+    
+    .stat-hexagon:hover {
+        transform: translateY(-10px) scale(0.85);
+    }
+    
+    .main-hexagon:hover {
+        transform: translateY(-10px) scale(0.95);
+    }
+}
+
+/* Animation Classes */
+.animate-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.delay-3 {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Clients Section */
+.clients-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0;
+}
+
+.clients-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(79, 172, 254, 0.1) 2px, transparent 2px), 
+                      radial-gradient(rgba(0, 242, 254, 0.05) 2px, transparent 2px);
+    background-size: 30px 30px, 25px 25px;
+    background-position: 0 0, 15px 15px;
+    opacity: 0.6;
+    z-index: 1;
+}
+
+.clients-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.section-header {
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.badge-container {
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.badge-container:before,
+.badge-container:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(79, 172, 254, 0.5), rgba(0, 242, 254, 0.5));
+}
+
+.badge-container:before {
+    right: calc(100% + 15px);
+}
+
+.badge-container:after {
+    left: calc(100% + 15px);
+}
+
+.section-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #333;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(135deg, #333 0%, #555 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+}
+
+.title-underline {
+    height: 4px;
+    width: 80px;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    margin: 0 auto;
+    border-radius: 2px;
+    position: relative;
+}
+
+.title-underline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Clients Filter */
+.clients-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.filter-btn {
+    background: transparent;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    color: #6c757d;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.filter-btn:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: -1;
+    border-radius: 25px;
+}
+
+.filter-btn .btn-text {
+    position: relative;
+    z-index: 3;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    color: white;
+    transform: translateY(-2px);
+}
+
+.filter-btn:hover:after, .filter-btn.active:after {
+    height: 100%;
+}
+
+.filter-btn.active {
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+}
+
+/* Client Cards */
+.client-logo-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transform: translateY(0);
+}
+
+.client-logo-card:before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 20px 40px rgba(79, 172, 254, 0.2);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.client-logo-card:hover {
+    transform: translateY(-15px);
+    border-color: rgba(79, 172, 254, 0.2);
+}
+
+.client-logo-card:hover:before {
+    opacity: 1;
+}
+
+.client-logo-wrapper {
+    position: relative;
+    z-index: 2;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.client-logo {
+    max-height: 80px;
+    max-width: 100%;
+    opacity: 0.8;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    filter: none;
+}
+
+.client-logo-card:hover .client-logo {
+    opacity: 1;
+    filter: none;
+    transform: scale(1.1);
+}
+
+.client-name {
+    font-weight: 700;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.client-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.95) 0%, rgba(0, 242, 254, 0.95) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 3;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    transform: scale(0.9);
+}
+
+.client-logo-card:hover .client-overlay {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.client-info {
+    text-align: center;
+    color: white;
+    padding: 1.5rem;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition-delay: 0.1s;
+}
+
+.client-logo-card:hover .client-info {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.client-info h4 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.client-info p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.client-info .btn {
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    padding: 0.35rem 1rem;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.client-info .btn:hover {
+    background: white;
+    color: #4facfe;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+.no-clients-message {
+    background: white;
+    border-radius: 15px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.message-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0.1) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #4facfe;
+    margin: 0 auto 1.5rem;
+}
+
+.industry-circles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.industry-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.05) 0%, rgba(0, 242, 254, 0.05) 100%);
+    border: 1px solid rgba(79, 172, 254, 0.1);
+}
+
+.circle-1 {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    right: -50px;
+}
+
+.circle-2 {
+    width: 200px;
+    height: 200px;
+    bottom: 50px;
+    left: -50px;
+}
+
+.circle-3 {
+    width: 150px;
+    height: 150px;
+    bottom: 20%;
+    right: 20%;
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .client-logo-card {
+        height: 150px;
+        padding: 1.5rem;
+    }
+}
+
+/* Add styles for button click effect */
+.btn-clicked {
+    transform: scale(0.95);
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+}
+</style>
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animate stats counter
+        const stats = document.querySelectorAll('.stat-number.counting');
+        
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            // Start with the actual number visible
+            element.textContent = target;
+            
+            // For browsers with reduced motion preference or if desired, skip animation
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                return;
+            }
+            
+            // Optional: animate from a percentage of the value for a quicker effect
+            let current = Math.floor(target * 0.7); // Start at 70% of the target
+            element.textContent = current;
+            const duration = 1500; // 1.5 seconds
+            const step = (target - current) / (duration / 16); // 60fps
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+        
+        // Intersection Observer for stats
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        stats.forEach(stat => {
+            statsObserver.observe(stat);
+        });
+        
+        // Client filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const clientItems = document.querySelectorAll('.client-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                clientItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Ensure "Get in Touch" button works properly
+        const getInTouchBtn = document.querySelector('.cta-section .btn-primary');
+        if (getInTouchBtn) {
+            getInTouchBtn.addEventListener('click', function(e) {
+                // Add visual feedback
+                this.classList.add('btn-clicked');
+                
+                // Ensure the link works by programmatically navigating
+                const href = this.getAttribute('href');
+                if (href) {
+                    // Small delay to show the click effect
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 300);
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}
+{% endblock %} 

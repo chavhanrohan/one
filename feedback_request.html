@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .project-details {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .feedback-options {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        .feedback-notes {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+        }
+        .rating {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+        }
+        .rating-item {
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            flex: 1;
+            margin: 0 5px;
+        }
+        .rating-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='images/logo.png', _external=True) }}" alt="Construction Company Logo" class="logo">
+        <h1>Project Feedback Request</h1>
+    </div>
+
+    <div class="content">
+        <p>Hello {{ user.username }},</p>
+
+        <p>We value your feedback and would like to hear about your experience with our construction services. Your input helps us improve and provide better service to our clients.</p>
+
+        <div class="project-details">
+            <p><strong>Project Title:</strong> {{ project.title }}</p>
+            <p><strong>Completion Date:</strong> {{ project.completion_date.strftime('%B %d, %Y') }}</p>
+            <p><strong>Project Type:</strong> {{ project.type|title }}</p>
+        </div>
+
+        <div class="feedback-options">
+            <h3>Share Your Experience:</h3>
+            <p>Please take a moment to rate your experience with:</p>
+            
+            <div class="rating">
+                <div class="rating-item">
+                    <div class="rating-value">1</div>
+                    <div>Poor</div>
+                </div>
+                <div class="rating-item">
+                    <div class="rating-value">2</div>
+                    <div>Fair</div>
+                </div>
+                <div class="rating-item">
+                    <div class="rating-value">3</div>
+                    <div>Good</div>
+                </div>
+                <div class="rating-item">
+                    <div class="rating-value">4</div>
+                    <div>Very Good</div>
+                </div>
+                <div class="rating-item">
+                    <div class="rating-value">5</div>
+                    <div>Excellent</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback-notes">
+            <h3>Additional Comments:</h3>
+            <p>We would appreciate your feedback on:</p>
+            <ul>
+                <li>Overall project quality</li>
+                <li>Communication with our team</li>
+                <li>Timeline adherence</li>
+                <li>Budget management</li>
+                <li>Customer service</li>
+            </ul>
+        </div>
+
+        <p>To provide your feedback, click the button below:</p>
+
+        <div style="text-align: center;">
+            <a href="{{ url_for('projects.feedback_form', project_id=project.id, _external=True) }}" class="button">Submit Feedback</a>
+        </div>
+
+        <p>Your feedback is important to us and will help us maintain our high standards of service. Thank you for your time!</p>
+
+        <p>Best regards,<br>The Construction Company Team</p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated message, please do not reply to this email.</p>
+        <p>&copy; {{ year }} Construction Company. All rights reserved.</p>
+    </div>
+</body>
+</html> 

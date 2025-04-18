@@ -1,0 +1,49 @@
+Project Resource Update
+
+Hello {{ user.username }},
+
+This is an update regarding the resources allocated to your project. Please review the changes and current status.
+
+Project Details:
+Project Title: {{ project.title }}
+Update Date: {{ update.date.strftime('%B %d, %Y') }}
+Resource Utilization: {{ project.resource_utilization }}%
+
+Resource Changes:
+{% for change in project.resource_changes %}
+{{ change.type }}
+Previous Amount: {{ change.previous_amount }}
+New Amount: {{ change.new_amount }}
+Change: {{ change.difference }}
+{% if change.reason %}
+Reason: {{ change.reason }}
+{% endif %}
+
+{% endfor %}
+
+Current Resource Allocation:
+{% for resource in project.resources %}
+{{ resource.name }}
+Allocated: {{ resource.allocated }}
+Used: {{ resource.used }}
+Remaining: {{ resource.remaining }}
+Status: {{ resource.status|title }}
+
+{% endfor %}
+
+Resource Status Summary:
+{% for status in project.resource_status %}
+- {{ status }}
+{% endfor %}
+
+To view detailed resource information and track utilization, visit:
+{{ url_for('projects.resource_details', project_id=project.id, _external=True) }}
+
+If you have any questions about the resource updates or need to request additional resources, please contact our project manager.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated resource update. Please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

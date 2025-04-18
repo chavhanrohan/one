@@ -1,0 +1,45 @@
+Payment Notification
+
+Hello {{ user.username }},
+
+This is a notification regarding a payment for your project. Please review the details below:
+
+Project Details:
+Project Title: {{ project.title }}
+Payment Reference: {{ payment.reference }}
+Date: {{ payment.date.strftime('%B %d, %Y') }}
+Status: {{ payment.status|title }}
+
+Payment Details:
+Amount: ₹{{ "%.2f"|format(payment.amount) }}
+Payment Method: {{ payment.method }}
+{% if payment.transaction_id %}
+Transaction ID: {{ payment.transaction_id }}
+{% endif %}
+{% if payment.description %}
+Description: {{ payment.description }}
+{% endif %}
+
+{% if payment.status == 'pending' %}
+Your payment is currently being processed. You will receive another notification once it has been completed.
+{% elif payment.status == 'completed' %}
+Your payment has been successfully processed. Thank you for your business!
+{% else %}
+There was an issue processing your payment. Please contact our billing department for assistance.
+{% endif %}
+
+To view your payment history and download receipts, visit:
+{{ url_for('projects.payment_history', project_id=project.id, _external=True) }}
+
+{% if payment.receipt_url %}
+You can also download your receipt directly from the payment history page.
+{% endif %}
+
+If you have any questions about this payment, please contact our billing department.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

@@ -1,0 +1,703 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Construction Company{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="contact-hero py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Get in Touch</h1>
+                <p class="lead mb-4">We're here to help you bring your construction vision to life. Reach out to us for any inquiries or project discussions.</p>
+                <div class="d-flex gap-3">
+                    <a href="tel:+919922535423" class="btn btn-primary btn-lg">
+                        <i class="fas fa-phone-alt me-2"></i>Call Us
+                    </a>
+                    <a href="mailto:info@neoinfra.com" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Email Us
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="contact-image">
+                    <img src="{{ url_for('static', filename='images/expertise/image8.jpg') }}" alt="Contact Us" class="img-fluid rounded-3 shadow">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="contact-card h-100">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Our Location</h3>
+                    <p>B, Jagat Housing Society,<br>Bairamji Town, Nagpur - 440013<br>Maharashtra, India</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-card h-100">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Phone Numbers</h3>
+                    <p>+91 9922535423<br>+91 1234567890</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-card h-100">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Address</h3>
+                    <p>info@neoinfra.com<br>support@neoinfra.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form and Map -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Contact Form -->
+            <div class="col-lg-6">
+                <div class="contact-form-card">
+                    <h2 class="mb-4">Send Us a Message</h2>
+                    <form action="{{ url_for('contact.contact') }}" method="POST" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                                    <label for="name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                                    <label for="email">Your Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Your Phone">
+                                    <label for="phone">Your Phone</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+                                    <label for="subject">Subject</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="message" name="message" placeholder="Your Message" style="height: 150px" required></textarea>
+                                    <label for="message">Your Message</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Map Section -->
+            <div class="col-lg-6">
+                <div class="map-card">
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps?q=B,%20Jagat%20Housing%20Society,%20Bairamji%20Town,%20Nagpur%20-%20440013,%20Maharashtra,%20India&output=embed"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="map-overlay">
+                        <div class="map-info">
+                            <h4>Visit Our Office</h4>
+                            <p>We're located in the heart of Nagpur, easily accessible from all parts of the city.</p>
+                            <div class="map-details">
+                                <p><i class="fas fa-clock me-2"></i>Mon-Fri: 9:00 AM - 6:00 PM</p>
+                                <p><i class="fas fa-parking me-2"></i>Free Parking Available</p>
+                                <a href="https://www.google.com/maps/dir//B,%20Jagat%20Housing%20Society,%20Bairamji%20Town,%20Nagpur%20-%20440013,%20Maharashtra,%20India" 
+                                   target="_blank" 
+                                   class="btn btn-sm btn-light mt-2">
+                                    <i class="fas fa-directions me-2"></i>Get Directions
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Social Media Section -->
+<section class="social-connect-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-badge">Stay Connected</span>
+            <h2 class="section-title">Connect With Us</h2>
+            <p class="section-subtitle">Follow us on social media for the latest updates, projects, and industry insights</p>
+        </div>
+        
+        <div class="social-container">
+            <div class="social-card facebook-card">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-content">
+                    <h3>Facebook</h3>
+                    <p>Follow our page for daily updates and exclusive content</p>
+                    <a href="#" class="social-link-btn">
+                        <span>Follow Us</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="social-card twitter-card">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-twitter"></i>
+                </div>
+                <div class="social-content">
+                    <h3>Twitter</h3>
+                    <p>Join the conversation and get real-time project updates</p>
+                    <a href="#" class="social-link-btn">
+                        <span>Follow Us</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="social-card linkedin-card">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+                <div class="social-content">
+                    <h3>LinkedIn</h3>
+                    <p>Connect professionally and explore career opportunities</p>
+                    <a href="#" class="social-link-btn">
+                        <span>Connect</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="social-card instagram-card">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="social-content">
+                    <h3>Instagram</h3>
+                    <p>See our visual portfolio and behind-the-scenes content</p>
+                    <a href="#" class="social-link-btn">
+                        <span>Follow Us</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="social-card youtube-card">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="social-content">
+                    <h3>YouTube</h3>
+                    <p>Watch project showcases and informational videos</p>
+                    <a href="#" class="social-link-btn">
+                        <span>Subscribe</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="newsletter-signup">
+            <div class="newsletter-content">
+                <h3>Subscribe to Our Newsletter</h3>
+                <p>Get the latest updates delivered directly to your inbox</p>
+            </div>
+            <form class="newsletter-form">
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Your Email Address" required>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Subscribe</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .contact-hero {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    
+    .contact-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s ease;
+    }
+    
+    .contact-image img {
+        transition: transform 0.5s ease;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 1rem;
+    }
+    
+    .contact-image:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    }
+    
+    .contact-image:hover img {
+        transform: scale(1.05);
+    }
+    
+    .contact-image::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(0,0,0,0.1), rgba(0,0,0,0.05));
+        border-radius: 1rem;
+        transition: opacity 0.4s ease;
+    }
+    
+    .contact-image:hover::after {
+        opacity: 0;
+    }
+    
+    .contact-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        background: #007bff;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 1.5rem;
+    }
+    
+    .contact-form-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .map-container {
+        height: 400px;
+        width: 100%;
+        position: relative;
+    }
+    
+    .map-card {
+        position: relative;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .map-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 1.5rem;
+    }
+    
+    .map-info h4 {
+        color: white;
+        margin-bottom: 0.5rem;
+    }
+    
+    .map-details {
+        margin-top: 1rem;
+    }
+    
+    .form-floating > .form-control:focus ~ label,
+    .form-floating > .form-control:not(:placeholder-shown) ~ label {
+        color: #007bff;
+    }
+
+    .map-info-window {
+        padding: 10px;
+        max-width: 250px;
+    }
+
+    .map-info-window h5 {
+        color: #007bff;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .map-info-window p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .map-info-window .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    /* Enhanced Social Media Section Styles */
+    .social-connect-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        position: relative;
+        overflow: hidden;
+        padding: 5rem 0;
+    }
+    
+    .social-connect-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #4facfe, #00f2fe);
+    }
+    
+    .section-badge {
+        display: inline-block;
+        background: linear-gradient(90deg, #4facfe, #00f2fe);
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: #333;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .section-subtitle {
+        font-size: 1.1rem;
+        color: #6c757d;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    
+    .social-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+    
+    .social-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        position: relative;
+        top: 0;
+    }
+    
+    .social-card:hover {
+        top: -10px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+    
+    .social-icon-wrapper {
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .social-icon-wrapper i {
+        position: relative;
+        z-index: 2;
+        transition: transform 0.5s ease;
+    }
+    
+    .social-card:hover .social-icon-wrapper i {
+        transform: scale(1.2) rotate(5deg);
+    }
+    
+    .social-icon-wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+    }
+    
+    .social-card:hover .social-icon-wrapper::after {
+        transform: translateX(100%);
+    }
+    
+    .social-content {
+        padding: 1.5rem;
+        text-align: center;
+    }
+    
+    .social-content h3 {
+        margin-bottom: 0.75rem;
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+    
+    .social-content p {
+        color: #6c757d;
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    .social-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .social-link-btn:hover {
+        transform: translateX(5px);
+        color: white;
+    }
+    
+    .social-link-btn i {
+        transition: transform 0.3s ease;
+    }
+    
+    .social-link-btn:hover i {
+        transform: translateX(3px);
+    }
+    
+    /* Social Card Specific Styles */
+    .facebook-card .social-icon-wrapper {
+        background: linear-gradient(135deg, #3b5998, #2553B9);
+    }
+    
+    .facebook-card .social-link-btn {
+        background: #3b5998;
+    }
+    
+    .twitter-card .social-icon-wrapper {
+        background: linear-gradient(135deg, #1da1f2, #0d8ecf);
+    }
+    
+    .twitter-card .social-link-btn {
+        background: #1da1f2;
+    }
+    
+    .linkedin-card .social-icon-wrapper {
+        background: linear-gradient(135deg, #0077b5, #005582);
+    }
+    
+    .linkedin-card .social-link-btn {
+        background: #0077b5;
+    }
+    
+    .instagram-card .social-icon-wrapper {
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+    
+    .instagram-card .social-link-btn {
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+    
+    .youtube-card .social-icon-wrapper {
+        background: linear-gradient(135deg, #ff0000, #cc0000);
+    }
+    
+    .youtube-card .social-link-btn {
+        background: #ff0000;
+    }
+    
+    /* Newsletter Signup */
+    .newsletter-signup {
+        background: white;
+        border-radius: 15px;
+        padding: 2.5rem;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .newsletter-signup::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: linear-gradient(to bottom, #4facfe, #00f2fe);
+    }
+    
+    .newsletter-content h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+    
+    .newsletter-content p {
+        color: #6c757d;
+        margin-bottom: 0;
+    }
+    
+    .newsletter-form {
+        flex: 1;
+        max-width: 500px;
+    }
+    
+    .newsletter-form .input-group {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border-radius: 50px;
+        overflow: hidden;
+    }
+    
+    .newsletter-form .form-control {
+        border: none;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .newsletter-form .btn {
+        padding: 0.625rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(90deg, #4facfe, #00f2fe);
+        border: none;
+        font-weight: 600;
+    }
+    
+    .newsletter-form .btn i {
+        transition: transform 0.3s ease;
+    }
+    
+    .newsletter-form .btn:hover i {
+        transform: translateX(3px);
+    }
+    
+    @media (max-width: 992px) {
+        .newsletter-signup {
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .newsletter-form {
+            width: 100%;
+            max-width: none;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .social-container {
+            gap: 1rem;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .social-connect-section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+        }
+        
+        .social-icon-wrapper {
+            height: 100px;
+            font-size: 2.5rem;
+        }
+        
+        .social-content {
+            padding: 1.25rem;
+        }
+        
+        .social-content h3 {
+            font-size: 1.3rem;
+        }
+        
+        .newsletter-content h3 {
+            font-size: 1.3rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Remove the Google Maps JavaScript API script and initMap function -->
+{% endblock %} 

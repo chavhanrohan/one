@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}{{ job.title }} - Careers - Neo Infrastructure{% endblock %}
+
+{% block content %}
+<!-- Job Detail Header -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('main.career') }}">Careers</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ job.title }}</li>
+            </ol>
+        </nav>
+        <h1 class="display-5 fw-bold mb-3">{{ job.title }}</h1>
+        <div class="d-flex align-items-center gap-3 text-muted">
+            <span><i class="fas fa-map-marker-alt me-2"></i>{{ job.location }}</span>
+            <span><i class="fas fa-briefcase me-2"></i>{{ job.job_type }}</span>
+            <span><i class="fas fa-calendar-alt me-2"></i>Posted: {{ job.posted_date.strftime('%b %d, %Y') }}</span>
+        </div>
+    </div>
+</section>
+
+<!-- Job Description & Application Form -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Left Column: Job Details -->
+            <div class="col-lg-7">
+                <h2 class="h4 fw-semibold mb-4">Job Description</h2>
+                <div class="job-description-content mb-4">
+                    {{ job.description|safe }} {# Use safe filter if description contains HTML #}
+                </div>
+                
+                {% if job.responsibilities %}
+                <h3 class="h5 fw-semibold mb-3">Responsibilities</h3>
+                <div class="job-responsibilities-content mb-4">
+                    {{ job.responsibilities|safe }}
+                </div>
+                {% endif %}
+                
+                {% if job.qualifications %}
+                <h3 class="h5 fw-semibold mb-3">Qualifications</h3>
+                <div class="job-qualifications-content mb-4">
+                    {{ job.qualifications|safe }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Right Column: Application Form -->
+            <div class="col-lg-5">
+                <div class="card shadow-sm sticky-lg-top" style="top: 80px;"> {# Sticky form on larger screens #}
+                    <div class="card-body p-4">
+                        <h3 class="h5 fw-semibold mb-4 text-center">Apply for this Position</h3>
+                        <form method="POST" action="{{ url_for('main.job_detail', id=job.id) }}" enctype="multipart/form-data">
+                            {{ form.hidden_tag() }}
+                            
+                            <div class="mb-3">
+                                {{ form.applicant_name.label(class="form-label") }}
+                                {{ form.applicant_name(class="form-control" + (" is-invalid" if form.applicant_name.errors else "")) }}
+                                {% for error in form.applicant_name.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+                            </div>
+                            
+                            <div class="mb-3">
+                                {{ form.applicant_email.label(class="form-label") }}
+                                {{ form.applicant_email(class="form-control" + (" is-invalid" if form.applicant_email.errors else "")) }}
+                                {% for error in form.applicant_email.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form.applicant_phone.label(class="form-label") }}
+                                {{ form.applicant_phone(class="form-control" + (" is-invalid" if form.applicant_phone.errors else "")) }}
+                                {% for error in form.applicant_phone.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+                            </div>
+
+                             <div class="mb-3">
+                                {{ form.resume.label(class="form-label") }}
+                                {{ form.resume(class="form-control" + (" is-invalid" if form.resume.errors else "")) }}
+                                <div class="form-text">{{ form.resume.description }}</div>
+                                {% for error in form.resume.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ form.cover_letter.label(class="form-label") }}
+                                {{ form.cover_letter(class="form-control" + (" is-invalid" if form.cover_letter.errors else "")) }}
+                                {% for error in form.cover_letter.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+                            </div>
+
+                            <div class="d-grid">
+                                {{ form.submit(class="btn btn-primary btn-lg") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Optional: Add some spacing if description/responsibilities/qualifications use lists */
+.job-description-content ul, .job-description-content ol,
+.job-responsibilities-content ul, .job-responsibilities-content ol,
+.job-qualifications-content ul, .job-qualifications-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+</style>
+
+{% endblock %} 

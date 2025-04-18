@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .safety-details {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .safety-item {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        .status-critical {
+            border-left: 4px solid #dc3545;
+        }
+        .status-high {
+            border-left: 4px solid #fd7e14;
+        }
+        .status-medium {
+            border-left: 4px solid #ffc107;
+        }
+        .status-low {
+            border-left: 4px solid #28a745;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='images/logo.png', _external=True) }}" alt="Construction Company Logo" class="logo">
+        <h1>Project Safety Report</h1>
+    </div>
+
+    <div class="content">
+        <p>Hello {{ user.username }},</p>
+
+        <p>This is the safety report for your project. We are committed to maintaining the highest safety standards on all our construction sites.</p>
+
+        <div class="safety-details">
+            <p><strong>Project Title:</strong> {{ project.title }}</p>
+            <p><strong>Report Date:</strong> {{ report.date.strftime('%B %d, %Y') }}</p>
+            <p><strong>Report Period:</strong> {{ report.period_start.strftime('%B %d, %Y') }} to {{ report.period_end.strftime('%B %d, %Y') }}</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value">{{ report.days_without_incident }}</div>
+                <div>Days Without Incident</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">{{ report.safety_score }}</div>
+                <div>Safety Score</div>
+            </div>
+        </div>
+
+        <h3>Safety Observations:</h3>
+        {% for observation in report.observations %}
+        <div class="safety-item status-{{ observation.severity }}">
+            <p><strong>{{ observation.title }}</strong></p>
+            <p>Severity: {{ observation.severity|title }}</p>
+            <p>Location: {{ observation.location }}</p>
+            {% if observation.description %}
+            <p>Description: {{ observation.description }}</p>
+            {% endif %}
+            {% if observation.action_taken %}
+            <p>Action Taken: {{ observation.action_taken }}</p>
+            {% endif %}
+            {% if observation.photos %}
+            <p>Photos: {{ observation.photos|length }} attached</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        {% if report.recommendations %}
+        <h3>Safety Recommendations:</h3>
+        <ul>
+            {% for rec in report.recommendations %}
+            <li>{{ rec }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <div class="safety-details">
+            <p><strong>Safety Officer:</strong> {{ report.safety_officer }}</p>
+            <p><strong>Contact:</strong> {{ report.safety_officer_contact }}</p>
+            <p><strong>Emergency Contact:</strong> {{ report.emergency_contact }}</p>
+        </div>
+
+        <p>To view the complete safety report and photos, click the button below:</p>
+
+        <div style="text-align: center;">
+            <a href="{{ url_for('projects.safety_report_details', project_id=project.id, report_id=report.id, _external=True) }}" class="button">View Full Report</a>
+        </div>
+
+        {% if report.requires_immediate_action %}
+        <p style="color: #dc3545; font-weight: bold;">Immediate Action Required: Please review the critical safety observations and take necessary actions as specified in the report.</p>
+        {% endif %}
+
+        <p>If you have any questions about the safety report or need to report a safety concern, please contact our safety team immediately.</p>
+
+        <p>Best regards,<br>The Construction Company Team</p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated message, please do not reply to this email.</p>
+        <p>&copy; {{ year }} Construction Company. All rights reserved.</p>
+    </div>
+</body>
+</html> 

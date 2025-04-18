@@ -1,0 +1,39 @@
+Project Budget Update
+
+Hello {{ user.username }},
+
+This is an update regarding the budget for your project. We want to keep you informed about any changes in the project's financial status.
+
+Project Details:
+Project Title: {{ project.title }}
+
+Budget Summary:
+Original Budget: ₹{{ "%.2f"|format(project.original_budget) }}
+Current Budget: ₹{{ "%.2f"|format(project.current_budget) }}
+Amount Spent: ₹{{ "%.2f"|format(project.amount_spent) }}
+Remaining Budget: ₹{{ "%.2f"|format(project.remaining_budget) }}
+Budget Variance: ₹{{ "%.2f"|format(project.budget_variance) }}
+
+{% if project.budget_changes %}
+Recent Budget Changes:
+{% for change in project.budget_changes %}
+- {{ change }}
+{% endfor %}
+{% endif %}
+
+{% if project.budget_notes %}
+Additional Notes:
+{{ project.budget_notes }}
+{% endif %}
+
+To view detailed budget information or if you have any questions, visit:
+{{ url_for('projects.budget_details', project_id=project.id, _external=True) }}
+
+If you would like to discuss the budget in detail, please don't hesitate to contact our project manager.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

@@ -1,0 +1,32 @@
+Project Milestone Achieved!
+
+Hello {{ user.username }},
+
+We are pleased to inform you that your project has reached an important milestone!
+
+Project Details:
+Project Title: {{ project.title }}
+Milestone: {{ milestone.title }}
+Completion Date: {{ milestone.completion_date.strftime('%B %d, %Y') }}
+Description:
+{{ milestone.description }}
+
+Overall Project Progress: {{ project.progress }}% Complete
+
+{% if milestone.photos %}
+We've uploaded some photos of the milestone completion. You can view them in your project dashboard.
+{% endif %}
+
+To view the project details and milestone photos, visit:
+{{ url_for('projects.project_details', project_id=project.id, _external=True) }}
+
+Next Milestone: {{ next_milestone.title }} (Expected: {{ next_milestone.expected_date.strftime('%B %d, %Y') }})
+
+If you have any questions or concerns, please don't hesitate to contact our project manager.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

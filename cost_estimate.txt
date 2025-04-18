@@ -1,0 +1,31 @@
+Project Cost Estimate
+
+Hello {{ user.username }},
+
+Thank you for using our cost estimator. Here's your project cost estimate:
+
+Project Type: {{ estimate.project_type|title }}
+Square Footage: {{ estimate.square_footage }}
+Material Quality: {{ estimate.material_quality|title }}
+Project Description:
+{{ estimate.description }}
+
+Estimated Total Cost: ₹{{ "%.2f"|format(estimate.total_cost) }}
+
+Please note that this is a rough estimate based on the information provided. The actual cost may vary depending on:
+- Site conditions and accessibility
+- Local building codes and regulations
+- Material availability and market prices
+- Project timeline and scheduling
+
+To get a detailed quote or discuss your project further, visit:
+{{ url_for('contact.contact', _external=True) }}
+
+Our team is ready to help you bring your project to life!
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .weather-details {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .weather-alert {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+        }
+        .precautions {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        .forecast {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+        }
+        .weather-icon {
+            text-align: center;
+            margin: 15px 0;
+        }
+        .weather-icon img {
+            max-width: 100px;
+            height: auto;
+        }
+        .alert-level {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .alert-level-low {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .alert-level-medium {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .alert-level-high {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='images/logo.png', _external=True) }}" alt="Construction Company Logo" class="logo">
+        <h1>Weather Alert</h1>
+    </div>
+
+    <div class="content">
+        <p>Hello {{ user.username }},</p>
+
+        <p>This is a weather alert for your project location. Please review the following weather information and take necessary precautions.</p>
+
+        <div class="weather-details">
+            <p><strong>Project Title:</strong> {{ project.title }}</p>
+            <p><strong>Location:</strong> {{ project.location }}</p>
+            <p><strong>Alert Time:</strong> {{ weather.alert_time.strftime('%B %d, %Y %H:%M') }}</p>
+            <p><strong>Alert Level:</strong> <span class="alert-level alert-level-{{ weather.alert_level }}">{{ weather.alert_level|title }}</span></p>
+        </div>
+
+        <div class="weather-icon">
+            <img src="{{ weather.icon_url }}" alt="{{ weather.condition }}">
+        </div>
+
+        <div class="weather-alert">
+            <h3>Current Conditions:</h3>
+            <p><strong>Temperature:</strong> {{ weather.temperature }}°C</p>
+            <p><strong>Condition:</strong> {{ weather.condition }}</p>
+            <p><strong>Wind Speed:</strong> {{ weather.wind_speed }} km/h</p>
+            <p><strong>Precipitation:</strong> {{ weather.precipitation }}</p>
+            <p><strong>Humidity:</strong> {{ weather.humidity }}%</p>
+        </div>
+
+        <div class="forecast">
+            <h3>Forecast:</h3>
+            <p>{{ weather.forecast }}</p>
+            {% if weather.forecast_details %}
+            <ul>
+                {% for detail in weather.forecast_details %}
+                <li>{{ detail }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div class="precautions">
+            <h3>Recommended Precautions:</h3>
+            <ul>
+                {% for precaution in weather.precautions %}
+                <li>{{ precaution }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <p>To view real-time weather updates and project status, click the button below:</p>
+
+        <div style="text-align: center;">
+            <a href="{{ url_for('projects.weather_updates', project_id=project.id, _external=True) }}" class="button">View Weather Updates</a>
+        </div>
+
+        <p>Please ensure all necessary safety measures are in place and monitor the weather conditions closely.</p>
+
+        <p>Best regards,<br>The Construction Company Team</p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated weather alert. Please do not reply to this email.</p>
+        <p>&copy; {{ year }} Construction Company. All rights reserved.</p>
+    </div>
+</body>
+</html> 

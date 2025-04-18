@@ -1,0 +1,42 @@
+Maintenance Reminder
+
+Hello {{ user.username }},
+
+This is a reminder about upcoming maintenance requirements for your project. Please review the details below:
+
+Project Details:
+Project Title: {{ project.title }}
+Maintenance Due Date: {{ maintenance.due_date.strftime('%B %d, %Y') }}
+Maintenance Type: {{ maintenance.type }}
+Priority Level: {{ maintenance.priority|title }}
+
+Required Maintenance Tasks:
+{% for task in maintenance.tasks %}
+- {{ task }}
+{% endfor %}
+
+Important Notes:
+{{ maintenance.notes }}
+
+{% if maintenance.special_instructions %}
+Special Instructions:
+{{ maintenance.special_instructions }}
+{% endif %}
+
+Maintenance Support:
+If you need assistance with maintenance or have questions, please contact us at:
+Phone: {{ maintenance.support_phone }}
+Email: {{ maintenance.support_email }}
+Hours: {{ maintenance.support_hours }}
+
+To schedule maintenance or view your maintenance history, visit:
+{{ url_for('projects.maintenance_schedule', project_id=project.id, _external=True) }}
+
+Please ensure that all maintenance tasks are completed by the due date to maintain your warranty coverage and ensure optimal performance.
+
+Best regards,
+The Construction Company Team
+
+---
+This is an automated message, please do not reply to this email.
+© {{ year }} Construction Company. All rights reserved. 
